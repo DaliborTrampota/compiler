@@ -1,0 +1,574 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/3_arithmetic.tc",
+          "line": 3,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "a",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 4,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 10,
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 4,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 4,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 4,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "b",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 5,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 3,
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 5,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 5,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 5,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "sum",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 7,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "+",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 7,
+                    "column": 15
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 7,
+                    "column": 19
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 7,
+                  "column": 15
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 7,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 7,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "diff",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 8,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "-",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 8,
+                    "column": 16
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 8,
+                    "column": 20
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 8,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 8,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 8,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "product",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 9,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "*",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 9,
+                    "column": 19
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 9,
+                    "column": 23
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 9,
+                  "column": 19
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 9,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 9,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "quotient",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 10,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "/",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 10,
+                    "column": 20
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 10,
+                    "column": 24
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 10,
+                  "column": 20
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 10,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 10,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "remainder",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 11,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "%",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 11,
+                    "column": 21
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 11,
+                    "column": 25
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 11,
+                  "column": 21
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 11,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 11,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "c",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 13,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "*",
+                "left": {
+                  "nodeType": "BinaryExpression",
+                  "operator": "+",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "a",
+                    "location": {
+                      "filename": "../examples/3_arithmetic.tc",
+                      "line": 13,
+                      "column": 14
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Identifier",
+                    "identifier": "b",
+                    "location": {
+                      "filename": "../examples/3_arithmetic.tc",
+                      "line": 13,
+                      "column": 18
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 13,
+                    "column": 14
+                  }
+                },
+                "right": {
+                  "nodeType": "BinaryExpression",
+                  "operator": "-",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "a",
+                    "location": {
+                      "filename": "../examples/3_arithmetic.tc",
+                      "line": 13,
+                      "column": 24
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Identifier",
+                    "identifier": "b",
+                    "location": {
+                      "filename": "../examples/3_arithmetic.tc",
+                      "line": 13,
+                      "column": 28
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 13,
+                    "column": 24
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 13,
+                  "column": 14
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 13,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 13,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "d",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 15,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "UnaryExpression",
+                "operator": "++",
+                "prefix": true,
+                "operand": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 15,
+                    "column": 15
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 15,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 15,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 15,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "e",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 16,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "UnaryExpression",
+                "operator": "--",
+                "prefix": false,
+                "operand": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/3_arithmetic.tc",
+                    "line": 16,
+                    "column": 13
+                  }
+                },
+                "location": {
+                  "filename": "../examples/3_arithmetic.tc",
+                  "line": 16,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 16,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 16,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/3_arithmetic.tc",
+                "line": 18,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/3_arithmetic.tc",
+              "line": 18,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/3_arithmetic.tc",
+          "line": 3,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/3_arithmetic.tc",
+        "line": 3,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/3_arithmetic.tc",
+    "line": 0,
+    "column": 0
+  }
+}

@@ -1,0 +1,6 @@
+[submodule "LLVM"]
+	path = LLVM
+	url = https://github.com/llvm/llvm-project.git
+[submodule "json"]
+	path = json
+	url = https://github.com/nlohmann/json
