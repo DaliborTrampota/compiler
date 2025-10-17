@@ -1,10 +1,16 @@
 #pragma once
 
+#include "../expression/ExpressionNode.h"
 #include "StatementNode.h"
-#include <vector>
 
-struct BlockStatementNode : public StatementNode {
-  std::vector<StatementNode *> body;
 
-  BlockStatementNode(std::vector<StatementNode *> body) : body(body) {}
+struct IfStatementNode : public StatementNode {
+    ExpressionNode* condition;
+    StatementNode* thenBody;
+    StatementNode* elseBody;
+
+    IfStatementNode(ExpressionNode* condition, StatementNode* thenBody, StatementNode* elseBody)
+        : condition(condition),
+          thenBody(thenBody),
+          elseBody(elseBody) {}
 };

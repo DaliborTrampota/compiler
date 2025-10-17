@@ -1,10 +1,13 @@
 #pragma once
 
-#include "StatementNode.h"
 #include <vector>
+#include "StatementNode.h"
+
 
 struct BlockStatementNode : public StatementNode {
-  std::vector<StatementNode *> body;
+    std::vector<StatementNode*> body;
 
-  BlockStatementNode(std::vector<StatementNode *> body) : body(body) {}
+    BlockStatementNode(std::vector<StatementNode*> body) : body(body) {}
+
+    static BlockStatementNode* Empty() { return new BlockStatementNode({}); }
 };

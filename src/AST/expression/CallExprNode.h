@@ -4,8 +4,8 @@
 #include <vector>
 
 struct CallExprNode : public ExpressionNode {
-  std::vector<ExpressionNode *> arguments;
   ExpressionNode *callee;
+  std::vector<ExpressionNode *> arguments;
 
   CallExprNode(ExpressionNode *callee, std::vector<ExpressionNode *> arguments)
       : callee(callee), arguments(arguments) {}
