@@ -13,4 +13,6 @@ struct IfStatementNode : public StatementNode {
         : condition(condition),
           thenBody(thenBody),
           elseBody(elseBody) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitIfStatement(this); }
 };

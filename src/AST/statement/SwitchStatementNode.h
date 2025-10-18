@@ -10,6 +10,8 @@ struct CaseStatementNode : public StatementNode {
     StatementNode* body;
 
     CaseStatementNode(IntegerLiteralNode* value, StatementNode* body) : value(value), body(body) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitCaseStatement(this); }
 };
 
 struct SwitchStatementNode : public StatementNode {
@@ -23,4 +25,6 @@ struct SwitchStatementNode : public StatementNode {
         : condition(condition),
           cases(cases),
           defaultBody(defaultBody) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitSwitchStatement(this); }
 };

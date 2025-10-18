@@ -11,4 +11,12 @@ struct ExpressionStatementNode : public StatementNode {
     ExprT expression;
 
     ExpressionStatementNode(ExprT expression) : expression(expression) {}
+
+    void accept(CodeGen& codeGen) override {
+        if (std::holds_alternative<ExpressionNode*>(expression)) {
+            std::get<ExpressionNode*>(expression)->accept(codeGen);
+        } else {
+            std::get<DeclarationNode*>(expression)->accept(codeGen);
+        }
+    }
 };

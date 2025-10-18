@@ -13,4 +13,5 @@ struct ParameterDeclNode : public DeclarationNode {
         : identifier(identifier),
           type(type) {}
 
+    void accept(CodeGen& codeGen) override { codeGen.visitParameterDeclaration(this); }
 };

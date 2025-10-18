@@ -18,4 +18,10 @@ struct StructDeclNode : public DeclarationNode {
         : identifier(identifier),
           fields(fields) {}
 
+    void accept(CodeGen& codeGen) override {
+        if (fields.empty())
+            codeGen.visitStructDeclaration(this);
+        else
+            codeGen.visitStructDefinition(this);
+    }
 };

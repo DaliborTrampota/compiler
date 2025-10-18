@@ -11,4 +11,6 @@ struct CallExprNode : public ExpressionNode {
     CallExprNode(ExpressionNode* callee, std::vector<ExpressionNode*> arguments)
         : callee(callee),
           arguments(arguments) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitCallExpr(this); }
 };

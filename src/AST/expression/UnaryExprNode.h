@@ -13,4 +13,6 @@ struct UnaryExprNode : public ExpressionNode {
         : operand(operand),
           op(op),
           prefix(prefix) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitUnaryExpr(this); }
 };

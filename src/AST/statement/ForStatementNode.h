@@ -20,4 +20,6 @@ struct ForStatementNode : public StatementNode {
           condition(condition),
           update(update),
           body(body) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitForStatement(this); }
 };

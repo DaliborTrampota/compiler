@@ -13,4 +13,6 @@ struct BinaryExprNode : public ExpressionNode {
         : left(left),
           right(right),
           op(op) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitBinaryExpr(this); }
 };

@@ -10,4 +10,6 @@ struct CastExprNode : public ExpressionNode {
     ExpressionNode* operand;
 
     CastExprNode(TypeNode* type, ExpressionNode* operand) : type(type), operand(operand) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitCastExpr(this); }
 };

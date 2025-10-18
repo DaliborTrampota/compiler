@@ -7,4 +7,6 @@ struct IndexExprNode : public ExpressionNode {
     ExpressionNode* index;
 
     IndexExprNode(ExpressionNode* array, ExpressionNode* index) : array(array), index(index) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitIndexExpr(this); }
 };

@@ -10,4 +10,6 @@ struct ReturnStatementNode : public StatementNode {
     ExpressionNode* returnValue;
 
     ReturnStatementNode(ExpressionNode* returnValue) : returnValue(returnValue) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitReturnStatement(this); }
 };

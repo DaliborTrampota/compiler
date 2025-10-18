@@ -19,4 +19,5 @@ struct FunctionPtrDeclNode : public DeclarationNode {
           returnType(returnType),
           parameters(parameters) {}
 
+    void accept(CodeGen& codeGen) override { codeGen.visitFunctionPtrDeclaration(this); }
 };

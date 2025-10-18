@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include "../expression/ExpressionNode.h"
 #include "StatementNode.h"
 
@@ -12,4 +11,6 @@ struct DoWhileStatementNode : public StatementNode {
     DoWhileStatementNode(ExpressionNode* condition, StatementNode* body)
         : condition(condition),
           loopBody(loopBody) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitDoWhileStatement(this); }
 };

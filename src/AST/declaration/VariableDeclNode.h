@@ -23,4 +23,5 @@ struct VariableDeclNode : public DeclarationNode {
           arraySize(arraySize),
           initializer(initializer) {}
 
+    void accept(CodeGen& codeGen) override { codeGen.visitVariableDeclaration(this); }
 };

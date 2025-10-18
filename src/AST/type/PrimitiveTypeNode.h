@@ -25,4 +25,6 @@ struct PrimitiveTypeNode : public TypeNode {
         if (kindStr == "Char")
             return Char;
     }
+
+    void accept(CodeGen& codeGen) override { codeGen.visitPrimitiveType(this); }
 };

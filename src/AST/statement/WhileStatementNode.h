@@ -12,4 +12,6 @@ struct WhileStatementNode : public StatementNode {
     WhileStatementNode(ExpressionNode* condition, StatementNode* body)
         : condition(condition),
           loopBody(loopBody) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitWhileStatement(this); }
 };

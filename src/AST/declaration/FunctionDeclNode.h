@@ -27,4 +27,10 @@ struct FunctionDeclNode : public DeclarationNode {
           parameters(parameters),
           body(body) {}
 
+    void accept(CodeGen& codeGen) override {
+        if (body)
+            codeGen.visitFunctionDefinition(this);
+        else
+            codeGen.visitFunctionDeclaration(this);
+    }
 };

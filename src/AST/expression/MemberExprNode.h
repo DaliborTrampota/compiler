@@ -13,4 +13,6 @@ struct MemberExprNode : public ExpressionNode {
         : object(object),
           member(member),
           arrowAccess(arrowAccess) {}
+
+    void accept(CodeGen& codeGen) override { codeGen.visitMemberExpr(this); }
 };

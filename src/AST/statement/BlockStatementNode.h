@@ -10,4 +10,10 @@ struct BlockStatementNode : public StatementNode {
     BlockStatementNode(std::vector<StatementNode*> body) : body(body) {}
 
     static BlockStatementNode* Empty() { return new BlockStatementNode({}); }
+
+    void accept(CodeGen& codeGen) override {
+        for (auto* stmt : body) {
+            stmt->accept(codeGen);
+        }
+    }
 };
