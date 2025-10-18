@@ -1,13 +1,16 @@
 #pragma once
 
-#include "ExpressionNode.h"
 #include <string>
+#include "ExpressionNode.h"
+
 
 struct MemberExprNode : public ExpressionNode {
-  ExpressionNode *object;
-  std::string member;
-  bool arrowAccess;
+    ExpressionNode* object;
+    std::string member;
+    bool arrowAccess;
 
-  MemberExprNode(ExpressionNode *object, std::string member, bool arrowAccess)
-      : object(object), member(member), arrowAccess(arrowAccess) {}
+    MemberExprNode(ExpressionNode* object, std::string member, bool arrowAccess)
+        : object(object),
+          member(member),
+          arrowAccess(arrowAccess) {}
 };

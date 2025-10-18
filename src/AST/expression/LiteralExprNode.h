@@ -1,28 +1,29 @@
 #pragma once
 
-#include "ExpressionNode.h"
 #include <string>
+#include "ExpressionNode.h"
+
 
 struct IntegerLiteralNode : public ExpressionNode {
-  int value;
+    int value;
 
-  IntegerLiteralNode(int value) : value(value) {}
+    IntegerLiteralNode(int value) : value(value) {}
 };
 
 struct DoubleLiteralNode : public ExpressionNode {
-  double value;
+    double value;
 
-  DoubleLiteralNode(double value) : value(value) {}
+    DoubleLiteralNode(double value) : value(value) {}
 };
 
 struct CharacterLiteralNode : public ExpressionNode {
-  char value;
+    char value;
 
-  CharacterLiteralNode(char value) : value(value) {}
+    CharacterLiteralNode(char value) : value(value) {}
 };
 
 struct StringLiteralNode : public ExpressionNode {
-  std::string value;
+    std::string value;
 
-  StringLiteralNode(std::string value) : value(value) {}
+    StringLiteralNode(std::string value) : value(value) {}
 };

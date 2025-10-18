@@ -1,14 +1,15 @@
 #pragma once
 
+#include <vector>
 #include "../expression/ExpressionNode.h"
 #include "StatementNode.h"
-#include <vector>
 
 
 struct WhileStatementNode : public StatementNode {
-  ExpressionNode *condition;
-  StatementNode *loopBody;
+    ExpressionNode* condition;
+    StatementNode* loopBody;
 
-  WhileStatementNode(ExpressionNode *condition, StatementNode *body)
-      : condition(condition), loopBody(loopBody) {}
+    WhileStatementNode(ExpressionNode* condition, StatementNode* body)
+        : condition(condition),
+          loopBody(loopBody) {}
 };

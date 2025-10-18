@@ -1,12 +1,14 @@
 #pragma once
 
-#include "ExpressionNode.h"
 #include <vector>
+#include "ExpressionNode.h"
+
 
 struct CallExprNode : public ExpressionNode {
-  ExpressionNode *callee;
-  std::vector<ExpressionNode *> arguments;
+    ExpressionNode* callee;
+    std::vector<ExpressionNode*> arguments;
 
-  CallExprNode(ExpressionNode *callee, std::vector<ExpressionNode *> arguments)
-      : callee(callee), arguments(arguments) {}
+    CallExprNode(ExpressionNode* callee, std::vector<ExpressionNode*> arguments)
+        : callee(callee),
+          arguments(arguments) {}
 };

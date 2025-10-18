@@ -1,10 +1,10 @@
 #pragma once
 
-#include "TypeNode.h"
 #include <string>
+#include "TypeNode.h"
 
 struct NamedTypeNode : public TypeNode {
-  std::string identifier;
+    std::string identifier;
 
-  NamedTypeNode(std::string identifier) : identifier(identifier) {}
+    NamedTypeNode(std::string identifier) : identifier(identifier) {}
 };

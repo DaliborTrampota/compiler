@@ -1,10 +1,10 @@
 #pragma once
 
-#include "TypeNode.h"
 #include <string>
+#include "TypeNode.h"
 
 struct PointerTypeNode : public TypeNode {
-  TypeNode *baseType;
+    TypeNode* baseType;
 
-  PointerTypeNode(TypeNode *baseType) : baseType(baseType) {}
+    PointerTypeNode(TypeNode* baseType) : baseType(baseType) {}
 };

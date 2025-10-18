@@ -1,5 +1,6 @@
 #pragma once
 
 struct DeclarationNode {
-  virtual ~DeclarationNode() = default;
+    virtual ~DeclarationNode() = default;
+
 };

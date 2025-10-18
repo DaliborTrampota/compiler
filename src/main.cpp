@@ -15,8 +15,6 @@ int main(int argc, char* argv[]) {
     std::string filePath = argv[1];
     nlohmann::json ast = loadASTFromFile(filePath);
     ProgramNode* program = fromJSON(ast);
-
-    // Print the parsed AST
     printAST(program);
 
     //   InitializeAllTargets();

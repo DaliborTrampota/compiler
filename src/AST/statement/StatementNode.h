@@ -1,5 +1,5 @@
 #pragma once
 
 struct StatementNode {
-  virtual ~StatementNode() = default;
+    virtual ~StatementNode() = default;
 };

@@ -6,7 +6,6 @@
 #include "StatementNode.h"
 
 
-
 struct ExpressionStatementNode : public StatementNode {
     using ExprT = std::variant<ExpressionNode*, DeclarationNode*>;
     ExprT expression;
