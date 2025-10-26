@@ -129,7 +129,7 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
 
     m_scopeCtx = m_scopeCtx->destroy();
 }
-
+//TODO global and constant variables
 void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
     Type* type = node->type->accept(*this);
     AllocaInst* alloca = nullptr;
@@ -144,8 +144,13 @@ void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
     } else {
         alloca = m_builder->CreateAlloca(type, 0, node->identifier);
         if (node->initializer) {
-            Value* initVal = getValueOf(node->initializer);
-            m_builder->CreateStore(initVal, alloca);
+            auto* idNode = dynamic_cast<IdentifierExprNode*>(node->initializer);
+            if (idNode && (Function* func = m_module->getFunction(idNode->name))) {
+                m_builder->CreateStore(func, alloca);
+            } else {
+                Value* initVal = getValueOf(node->initializer);
+                m_builder->CreateStore(initVal, alloca);
+            }
         }
     }
 
@@ -185,9 +190,11 @@ void CodeGen::visitFunctionPtrDeclaration(FunctionPtrDeclNode* node) {
         paramTypes.push_back(param->type->accept(*this));
     }
     FunctionType* funcType = FunctionType::get(returnType, paramTypes, false);
-    Function* function =
-        Function::Create(funcType, Function::ExternalLinkage, node->identifier, m_module.get());
-    //TODO?
+    PointerType* ptrType = PointerType::get(funcType, 0);
+
+    //AllocaInst* alloca = m_builder->CreateAlloca(ptrType, 0, node->identifier);
+    //m_scopeCtx->namedValues[node->identifier] = alloca;
+    m_namedTypes[node->identifier] = ptrType;
 }
 
 // ==== Statement visitors ====
@@ -360,14 +367,26 @@ Value* CodeGen::visitStringLiteral(StringLiteralNode* node) {
 }
 
 Value* CodeGen::visitIdentifierExpr(IdentifierExprNode* node) {
-    // Should not be called directly - use getAddressOf() or getValueOf()
-    llvm_unreachable("visitIdentifierExpr called directly");
+    llvm_unreachable(
+        "visitIdentifierExpr called directly instead of getAddressOf() or getValueOf()"
+    );
 }
 
 Value* CodeGen::visitCallExpr(CallExprNode* node) {
-    // TODO: Implement function calls
-    std::cout << "Generating call expression\n";
-    return nullptr;
+    std::vector<Value*> args;
+    for (auto* arg : node->arguments) {
+        args.push_back(getValueOf(arg));
+    }
+
+    Function* func = m_module->getFunction(node->callee->name);
+    if (func) {
+        // Direct function call: foo(args)
+        return m_builder->CreateCall(func, args, "direct_call");
+    }
+
+    // load function pointer (from scope context)
+    Value* funcPtr = getValueOf(node->callee);
+    return m_builder->CreateCall(funcPtr, args, "funcptr_call");
 }
 
 Value* CodeGen::visitCastExpr(CastExprNode* node) {

@@ -31,7 +31,7 @@ class CodeGen {
         std::unordered_map < std::string, std::pair<unsigned, llvm::Type*> fields;
     };
     std::unordered_map<std::string, StructInfo> m_structInfos;
-    std::unordered_map<std::string, Type*> m_namedTypes;
+    std::unordered_map<std::string, llvm::Type*> m_namedTypes;
 
   public:
     CodeGen(const std::string& moduleName);
@@ -45,8 +45,9 @@ class CodeGen {
     // Visitor methods for declarations
     void visitFunctionDeclaration(FunctionDeclNode* node);
     void visitFunctionDefinition(FunctionDeclNode* node);
-    void visitFunctionPtrDeclaration(FunctionPtrDeclNode* node);
     void visitVariableDeclaration(VariableDeclNode* node);
+
+    void visitFunctionPtrDeclaration(FunctionPtrDeclNode* node);
     void visitStructDeclaration(StructDeclNode* node);
     void visitStructDefinition(StructDeclNode* node);
 
@@ -73,10 +74,10 @@ class CodeGen {
     llvm::Value* visitDoubleLiteral(DoubleLiteralNode* node);
     llvm::Value* visitCharacterLiteral(CharacterLiteralNode* node);
     llvm::Value* visitStringLiteral(StringLiteralNode* node);
-    // TODO
+
     llvm::Value* visitIdentifierExpr(IdentifierExprNode* node);
     llvm::Value* visitCallExpr(CallExprNode* node);
-    llvm::Value* visitCastExpr(CastExprNode* node);
+    llvm::Value* visitCastExpr(CastExprNode* node);  // todo
     llvm::Value* visitMemberExpr(MemberExprNode* node);
     llvm::Value* visitIndexExpr(IndexExprNode* node);
     llvm::Value* visitCommaExpr(CommaExprNode* node);

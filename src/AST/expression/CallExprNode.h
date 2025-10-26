@@ -5,10 +5,10 @@
 
 
 struct CallExprNode : public ExpressionNode {
-    ExpressionNode* callee;
+    IdentifierExprNode* callee;
     std::vector<ExpressionNode*> arguments;
 
-    CallExprNode(ExpressionNode* callee, std::vector<ExpressionNode*> arguments)
+    CallExprNode(IdentifierExprNode* callee, std::vector<ExpressionNode*> arguments)
         : callee(callee),
           arguments(arguments) {}
 
