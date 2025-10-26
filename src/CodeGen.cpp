@@ -74,11 +74,11 @@ IRBuilder<>* CodeGen::getBuilder() {
 // ==== Declaration visitors ====
 void CodeGen::visitFunctionDeclaration(FunctionDeclNode* node) {
     // Example: Create function signature
-    Type* returnType = visitType(node->returnType);
+    Type* returnType = node->returnType->accept(*this);
 
     std::vector<Type*> paramTypes;
     for (auto* param : node->parameters) {
-        paramTypes.push_back(visitType(param->type));
+        paramTypes.push_back(param->type->accept(*this));
     }
 
     FunctionType* funcType = FunctionType::get(returnType, paramTypes, false);
@@ -103,6 +103,10 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
 
     // If there's a body, generate it
     //if (node->body && !node->body->body.empty()) {
+    if (node->body->body.empty()) {
+        //TODO warn empty function body?
+    }
+
     BasicBlock* entry = BasicBlock::Create(*m_context, "entry", function);
     m_builder->SetInsertPoint(entry);
 
@@ -113,12 +117,16 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
     }
 
     // Generate body
-    Value* returnValue = visitBlockStatement(node->body);
+    visitBlockStatement(node->body);
 
-    if (node->returnType->kind == PrimitiveTypeNode::Void)
-        m_builder->CreateRetVoid();
-    else
-        m_builder->CreateRet(returnValue);
+    BasicBlock* currentBB = m_builder->GetInsertBlock();
+    if (!currentBB->getTerminator()) {
+        if (node->returnType->kind == PrimitiveTypeNode::Void) {
+            m_builder->CreateRetVoid();
+        } else {
+            throw std::runtime_error("Missing return in non-void function: " + node->identifier);
+        }
+    }
 
     verifyFunction(*function);
 
@@ -126,26 +134,24 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
 }
 
 void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
-    Type* type = visitType(node->type);
+    Type* type = node->type->accept(*this);
+    AllocaInst* alloca = nullptr;
     if (node->arraySize) {
         int arrSize = dynamic_cast<IntegerLiteralNode*>(node->arraySize)->value;
         ArrayType* arrT = ArrayType::get(type, arrSize);
-        m_builder->CreateAlloca(arrT, 0, node->identifier);
+        alloca = m_builder->CreateAlloca(arrT, 0, node->identifier);
 
         if (node->initializer) {
-            LogError("Array initializers not supported");
-            return;
+            return LogError("Array initializers not supported");
         }
 
-
     } else {
-        m_builder->CreateAlloca(type, 0, node->identifier);
+        alloca = m_builder->CreateAlloca(type, 0, node->identifier);
         if (node->initializer) {
-            Value* initVal = visitExpression(node->initializer);
+            Value* initVal = getValueOf(node->initializer);
             m_builder->CreateStore(initVal, alloca);
         }
     }
-
 
     m_scopeCtx->namedValues[node->identifier] = alloca;
 }
@@ -164,7 +170,7 @@ void CodeGen::visitStructDefinition(StructDeclNode* node) {
 
     std::vector<Type*> fieldTypes;
     for (VariableDeclNode* field : node->fields) {
-        Type* fieldType = visitType(field->type);
+        Type* fieldType = field->type->accept(*this);
         fieldTypes.push_back(fieldType);
     }
 
@@ -172,24 +178,22 @@ void CodeGen::visitStructDefinition(StructDeclNode* node) {
 }
 
 void CodeGen::visitFunctionPtrDeclaration(FunctionPtrDeclNode* node) {
-    Type* returnType = visitType(node->returnType);
+    Type* returnType = node->returnType->accept(*this);
     std::vector<Type*> paramTypes;
     for (auto* param : node->parameters) {
-        paramTypes.push_back(visitType(param->type));
+        paramTypes.push_back(param->type->accept(*this));
     }
     FunctionType* funcType = FunctionType::get(returnType, paramTypes, false);
     Function* function =
         Function::Create(funcType, Function::ExternalLinkage, node->identifier, m_module.get());
-    //TODO
+    //TODO?
 }
 
 // ==== Statement visitors ====
-Value* CodeGen::visitBlockStatement(BlockStatementNode* node) {
-    Value* lastValue = nullptr;
+void CodeGen::visitBlockStatement(BlockStatementNode* node) {
     for (auto* stmt : node->body) {
-        lastValue = stmt->accept(*this);
+        stmt->accept(*this);
     }
-    return lastValue;
 }
 
 void CodeGen::visitIfStatement(IfStatementNode* node) {
@@ -214,7 +218,7 @@ void CodeGen::visitForStatement(ForStatementNode* node) {
 
 void CodeGen::visitReturnStatement(ReturnStatementNode* node) {
     if (node->returnValue) {
-        Value* retVal = visitExpression(node->returnValue);
+        Value* retVal = getValueOf(node->returnValue);
         m_builder->CreateRet(retVal);
     } else {
         m_builder->CreateRetVoid();
@@ -222,9 +226,51 @@ void CodeGen::visitReturnStatement(ReturnStatementNode* node) {
 }
 
 // ==== Expression visitors ====
+
+// Helper to get the address (pointer) for l-values
+Value* CodeGen::getAddressOf(ExpressionNode* node) {
+    // For identifiers, return the pointer without loading
+    if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node)) {
+        Value* ptr = m_scopeCtx->get(idNode->name);
+        if (!ptr) {
+            std::cerr << "Unknown variable name: " << idNode->name << "\n";
+            return nullptr;
+        }
+        return ptr;
+    }
+    // TODO: Handle array indexing (arr[i]), member access (obj.field), dereferencing (*ptr), etc.
+    std::cerr << "Cannot get address of this expression\n";
+    return nullptr;
+}
+
+// Helper to get the value (loaded) for r-values
+Value* CodeGen::getValueOf(ExpressionNode* node) {
+    // For identifiers, load the value from the pointer
+    if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node)) {
+        Value* ptr = m_scopeCtx->get(idNode->name);
+        if (!ptr) {
+            std::cerr << "Unknown variable name: " << idNode->name << "\n";
+            return nullptr;
+        }
+        return m_builder->CreateLoad(ptr, idNode->name);  // Load the value
+    }
+
+    // For everything else (literals, expressions, calls, etc.), use the visitor
+    return node->accept(*this);
+}
+
 Value* CodeGen::visitBinaryExpr(BinaryExprNode* node) {
-    Value* left = visitExpression(node->left);
-    Value* right = visitExpression(node->right);
+    // Special handling for assignment operator
+    if (node->op == "=") {
+        Value* leftAddr = getAddressOf(node->left);  // Get address for l-value
+        Value* rightVal = getValueOf(node->right);   // Get value for r-value
+        m_builder->CreateStore(rightVal, leftAddr);
+        return rightVal;
+    }
+
+    // For all other operators, evaluate both sides as r-values
+    Value* left = getValueOf(node->left);
+    Value* right = getValueOf(node->right);
 
     if (node->op == "+") {
         return m_builder->CreateAdd(left, right, "addtmp");
@@ -242,9 +288,6 @@ Value* CodeGen::visitBinaryExpr(BinaryExprNode* node) {
         return m_builder->CreateICmpEQ(left, right, "cmptmp");
     } else if (node->op == "!=") {
         return m_builder->CreateICmpNE(left, right, "cmptmp");
-    } else if (node->op == "=") {
-        m_builder->CreateStore(right, left);  // Left is identifier or index expression;
-        return right;
     }
 
     std::cerr << "Unknown binary operator: " << node->op << "\n";
@@ -252,20 +295,35 @@ Value* CodeGen::visitBinaryExpr(BinaryExprNode* node) {
 }
 
 Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
-    Value* operand = visitExpression(node->operand);
-    Value* oldVal = m_builder->CreateLoad(operand);
-    Value* newVal = nullptr;
+    if (node->op == "++" || node->op == "--") {
+        Value* addr = getAddressOf(node->operand);
+        Value* oldVal = m_builder->CreateLoad(addr);
+        Value* newVal = nullptr;
 
-    if (node->op == "++") {
-        newVal = m_builder->CreateAdd(oldVal, m_builder->getInt32(1));
-        m_builder->CreateStore(newVal, operand);
-    } else if (node->op == "--") {
-        newVal = m_builder->CreateSub(oldVal, m_builder->getInt32(1));
-        m_builder->CreateStore(newVal, operand);
-    } else {
-        return LogError("Unknown unary operator: " + node->op);
+        if (node->op == "++") {
+            newVal = m_builder->CreateAdd(oldVal, m_builder->getInt32(1));
+        } else {
+            newVal = m_builder->CreateSub(oldVal, m_builder->getInt32(1));
+        }
+
+        m_builder->CreateStore(newVal, addr);
+        return node->prefix ? newVal : oldVal;
     }
-    return node->prefix ? newVal : oldVal;
+
+    if (node->op == "-") {
+        Value* operand = getValueOf(node->operand);
+        return m_builder->CreateNeg(operand, "negtmp");
+    } else if (node->op == "!") {
+        Value* operand = getValueOf(node->operand);
+        return m_builder->CreateNot(operand, "nottmp");
+    } else if (node->op == "&") {
+        return getAddressOf(node->operand);
+    } else if (node->op == "*") {
+        Value* ptr = getValueOf(node->operand);
+        return m_builder->CreateLoad(ptr, "dereftmp");
+    }
+
+    return LogError("Unknown unary operator: " + node->op);
 }
 
 Value* CodeGen::visitIntegerLiteral(IntegerLiteralNode* node) {
@@ -281,18 +339,15 @@ Value* CodeGen::visitCharacterLiteral(CharacterLiteralNode* node) {
 }
 
 Value* CodeGen::visitStringLiteral(StringLiteralNode* node) {
-    // TODO: Implement string literal
-    std::cout << "Generating string literal\n";
-    return nullptr;
+    return ConstantDataArray::getString(*m_context, node->value);
 }
 
 Value* CodeGen::visitIdentifierExpr(IdentifierExprNode* node) {
-    Value* val = m_scopeCtx->get(node->name);
-    if (!val) {
-        std::cerr << "Unknown variable name: " << node->name << "\n";
-        return nullptr;
-    }
-    return val;
+    throw std::runtime_error(
+        "visitIdentifierExpr should not be called directly, use getAddressOf() or getValueOf() "
+        "instead"
+    );
+    return nullptr;
 }
 
 Value* CodeGen::visitCallExpr(CallExprNode* node) {
@@ -319,6 +374,14 @@ Value* CodeGen::visitIndexExpr(IndexExprNode* node) {
     return nullptr;
 }
 
+Value* CodeGen::visitCommaExpr(CommaExprNode* node) {
+    Value* lastValue = nullptr;
+    for (auto* expr : node->expressions) {
+        lastValue = expr->accept(*this);
+    }
+    return lastValue;
+}
+
 // ==== Type visitors ====
 Type* CodeGen::visitPrimitiveType(PrimitiveTypeNode* node) {
     switch (node->kind) {
@@ -331,7 +394,7 @@ Type* CodeGen::visitPrimitiveType(PrimitiveTypeNode* node) {
 }
 
 Type* CodeGen::visitPointerType(PointerTypeNode* node) {
-    Type* baseType = visitType(node->baseType);
+    Type* baseType = node->baseType->accept(*this);
     return PointerType::get(baseType, 0);
 }
 

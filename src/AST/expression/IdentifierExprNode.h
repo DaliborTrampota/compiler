@@ -9,5 +9,5 @@ struct IdentifierExprNode : public ExpressionNode {
 
     IdentifierExprNode(std::string name) : name(name) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitIdentifierExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitIdentifierExpr(this); }
 };

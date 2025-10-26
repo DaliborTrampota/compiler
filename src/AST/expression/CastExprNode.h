@@ -11,5 +11,5 @@ struct CastExprNode : public ExpressionNode {
 
     CastExprNode(TypeNode* type, ExpressionNode* operand) : type(type), operand(operand) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitCastExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitCastExpr(this); }
 };

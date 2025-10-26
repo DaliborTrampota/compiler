@@ -14,5 +14,5 @@ struct MemberExprNode : public ExpressionNode {
           member(member),
           arrowAccess(arrowAccess) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitMemberExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitMemberExpr(this); }
 };

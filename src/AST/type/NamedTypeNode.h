@@ -8,5 +8,5 @@ struct NamedTypeNode : public TypeNode {
 
     NamedTypeNode(std::string identifier) : identifier(identifier) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitNamedType(this); }
+    llvm::Type* accept(CodeGen& codeGen) override { return codeGen.visitNamedType(this); }
 };

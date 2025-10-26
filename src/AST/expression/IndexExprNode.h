@@ -8,5 +8,5 @@ struct IndexExprNode : public ExpressionNode {
 
     IndexExprNode(ExpressionNode* array, ExpressionNode* index) : array(array), index(index) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitIndexExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitIndexExpr(this); }
 };

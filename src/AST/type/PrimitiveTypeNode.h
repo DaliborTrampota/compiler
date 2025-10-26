@@ -26,5 +26,5 @@ struct PrimitiveTypeNode : public TypeNode {
             return Char;
     }
 
-    void accept(CodeGen& codeGen) override { codeGen.visitPrimitiveType(this); }
+    llvm::Type* accept(CodeGen& codeGen) override { return codeGen.visitPrimitiveType(this); }
 };

@@ -14,5 +14,5 @@ struct UnaryExprNode : public ExpressionNode {
           op(op),
           prefix(prefix) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitUnaryExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitUnaryExpr(this); }
 };

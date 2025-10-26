@@ -1,8 +1,11 @@
 #pragma once
 
-#include "CodeGen.h"
+#include <llvm/IR/Type.h>
+
+// Forward declaration
+class CodeGen;
 
 struct TypeNode {
     virtual ~TypeNode() = default;
-    virtual void accept(CodeGen& codeGen) = 0;
+    virtual llvm::Type* accept(CodeGen& codeGen) = 0;
 };

@@ -9,5 +9,5 @@ struct CommaExprNode : public ExpressionNode {
 
     CommaExprNode(std::vector<ExpressionNode*> expressions) : expressions(expressions) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitCommaExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitCommaExpr(this); }
 };

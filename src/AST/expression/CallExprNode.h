@@ -12,5 +12,5 @@ struct CallExprNode : public ExpressionNode {
         : callee(callee),
           arguments(arguments) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitCallExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitCallExpr(this); }
 };

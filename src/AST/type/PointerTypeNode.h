@@ -7,5 +7,5 @@ struct PointerTypeNode : public TypeNode {
 
     PointerTypeNode(TypeNode* baseType) : baseType(baseType) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitPointerType(this); }
+    llvm::Type* accept(CodeGen& codeGen) override { return codeGen.visitPointerType(this); }
 };

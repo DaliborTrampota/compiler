@@ -9,7 +9,7 @@ struct IntegerLiteralNode : public ExpressionNode {
 
     IntegerLiteralNode(int value) : value(value) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitIntegerLiteral(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitIntegerLiteral(this); }
 };
 
 struct DoubleLiteralNode : public ExpressionNode {
@@ -17,7 +17,7 @@ struct DoubleLiteralNode : public ExpressionNode {
 
     DoubleLiteralNode(double value) : value(value) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitDoubleLiteral(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitDoubleLiteral(this); }
 };
 
 struct CharacterLiteralNode : public ExpressionNode {
@@ -25,7 +25,7 @@ struct CharacterLiteralNode : public ExpressionNode {
 
     CharacterLiteralNode(char value) : value(value) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitCharacterLiteral(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitCharacterLiteral(this); }
 };
 
 struct StringLiteralNode : public ExpressionNode {
@@ -33,5 +33,5 @@ struct StringLiteralNode : public ExpressionNode {
 
     StringLiteralNode(std::string value) : value(value) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitStringLiteral(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitStringLiteral(this); }
 };

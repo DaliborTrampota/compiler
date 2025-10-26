@@ -14,5 +14,5 @@ struct BinaryExprNode : public ExpressionNode {
           right(right),
           op(op) {}
 
-    void accept(CodeGen& codeGen) override { codeGen.visitBinaryExpr(this); }
+    llvm::Value* accept(CodeGen& codeGen) override { return codeGen.visitBinaryExpr(this); }
 };
