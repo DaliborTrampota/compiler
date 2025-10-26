@@ -98,9 +98,6 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
     if (!function)
         function = visitFunctionDeclaration(node);
 
-    if (!function)
-        return LogError("Unknown function: " + node->identifier);
-
     // If there's a body, generate it
     //if (node->body && !node->body->body.empty()) {
     if (node->body->body.empty()) {
@@ -141,9 +138,8 @@ void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
         ArrayType* arrT = ArrayType::get(type, arrSize);
         alloca = m_builder->CreateAlloca(arrT, 0, node->identifier);
 
-        if (node->initializer) {
-            return LogError("Array initializers not supported");
-        }
+        // TODO: Array initializers not yet supported
+        assert(!node->initializer && "Array initializers not implemented");
 
     } else {
         alloca = m_builder->CreateAlloca(type, 0, node->identifier);
@@ -159,6 +155,9 @@ void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
 void CodeGen::visitStructDeclaration(StructDeclNode* node) {
     StructType* type = StructType::create(m_context, node->identifier);
     m_namedTypes[node->identifier] = type;
+
+    StructInfo info{.type = type, .fields = {}};
+    m_structInfos[node->identifier] = info;
 }
 
 void CodeGen::visitStructDefinition(StructDeclNode* node) {
@@ -169,9 +168,11 @@ void CodeGen::visitStructDefinition(StructDeclNode* node) {
     }
 
     std::vector<Type*> fieldTypes;
+    StructInfo& info = m_structInfos[node->identifier];
     for (VariableDeclNode* field : node->fields) {
         Type* fieldType = field->type->accept(*this);
         fieldTypes.push_back(fieldType);
+        info.fields.emplace(field->identifier, {fieldTypes.size() - 1, fieldType});
     }
 
     type->setBody(fieldTypes);
@@ -229,7 +230,6 @@ void CodeGen::visitReturnStatement(ReturnStatementNode* node) {
 
 // Helper to get the address (pointer) for l-values
 Value* CodeGen::getAddressOf(ExpressionNode* node) {
-    // For identifiers, return the pointer without loading
     if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node)) {
         Value* ptr = m_scopeCtx->get(idNode->name);
         if (!ptr) {
@@ -238,14 +238,24 @@ Value* CodeGen::getAddressOf(ExpressionNode* node) {
         }
         return ptr;
     }
-    // TODO: Handle array indexing (arr[i]), member access (obj.field), dereferencing (*ptr), etc.
-    std::cerr << "Cannot get address of this expression\n";
-    return nullptr;
+    if (auto* memberNode = dynamic_cast<MemberExprNode*>(node)) {
+        return visitMemberExpr(memberNode);
+    }
+    if (auto* indexNode = dynamic_cast<IndexExprNode*>(node)) {
+        return visitIndexExpr(indexNode);
+    }
+
+    if (auto* unaryNode = dynamic_cast<UnaryExprNode*>(node)) {
+        if (unaryNode->op == "*") {
+            return getValueOf(unaryNode->operand);
+        }
+    }
+
+    llvm_unreachable("Cannot get address of this expression");
 }
 
 // Helper to get the value (loaded) for r-values
 Value* CodeGen::getValueOf(ExpressionNode* node) {
-    // For identifiers, load the value from the pointer
     if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node)) {
         Value* ptr = m_scopeCtx->get(idNode->name);
         if (!ptr) {
@@ -254,13 +264,21 @@ Value* CodeGen::getValueOf(ExpressionNode* node) {
         }
         return m_builder->CreateLoad(ptr, idNode->name);  // Load the value
     }
+    if (auto* memberNode = dynamic_cast<MemberExprNode*>(node)) {
+        Value* ptr = visitMemberExpr(memberNode);
+        return m_builder->CreateLoad(ptr, "member");
+    }
 
-    // For everything else (literals, expressions, calls, etc.), use the visitor
+    if (auto* indexNode = dynamic_cast<IndexExprNode*>(node)) {
+        Value* ptr = visitIndexExpr(indexNode);
+        return m_builder->CreateLoad(ptr, "index");
+    }
+
+    // For everything else (literals, expressions, calls, etc.)
     return node->accept(*this);
 }
 
 Value* CodeGen::visitBinaryExpr(BinaryExprNode* node) {
-    // Special handling for assignment operator
     if (node->op == "=") {
         Value* leftAddr = getAddressOf(node->left);  // Get address for l-value
         Value* rightVal = getValueOf(node->right);   // Get value for r-value
@@ -268,30 +286,29 @@ Value* CodeGen::visitBinaryExpr(BinaryExprNode* node) {
         return rightVal;
     }
 
-    // For all other operators, evaluate both sides as r-values
+    // Both sides as r-values
     Value* left = getValueOf(node->left);
     Value* right = getValueOf(node->right);
 
     if (node->op == "+") {
-        return m_builder->CreateAdd(left, right, "addtmp");
+        return m_builder->CreateAdd(left, right, "add");
     } else if (node->op == "-") {
-        return m_builder->CreateSub(left, right, "subtmp");
+        return m_builder->CreateSub(left, right, "sub");
     } else if (node->op == "*") {
-        return m_builder->CreateMul(left, right, "multmp");
+        return m_builder->CreateMul(left, right, "mul");
     } else if (node->op == "/") {
-        return m_builder->CreateSDiv(left, right, "divtmp");
+        return m_builder->CreateSDiv(left, right, "div");
     } else if (node->op == "<") {
-        return m_builder->CreateICmpSLT(left, right, "cmptmp");
+        return m_builder->CreateICmpSLT(left, right, "cmp_lt");
     } else if (node->op == ">") {
-        return m_builder->CreateICmpSGT(left, right, "cmptmp");
+        return m_builder->CreateICmpSGT(left, right, "cmp_gt");
     } else if (node->op == "==") {
-        return m_builder->CreateICmpEQ(left, right, "cmptmp");
+        return m_builder->CreateICmpEQ(left, right, "cmp_eq");
     } else if (node->op == "!=") {
-        return m_builder->CreateICmpNE(left, right, "cmptmp");
+        return m_builder->CreateICmpNE(left, right, "cmp_ne");
     }
 
-    std::cerr << "Unknown binary operator: " << node->op << "\n";
-    return nullptr;
+    llvm_unreachable("Unknown binary operator");
 }
 
 Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
@@ -301,9 +318,9 @@ Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
         Value* newVal = nullptr;
 
         if (node->op == "++") {
-            newVal = m_builder->CreateAdd(oldVal, m_builder->getInt32(1));
+            newVal = m_builder->CreateAdd(oldVal, m_builder->getInt32(1), "inc");
         } else {
-            newVal = m_builder->CreateSub(oldVal, m_builder->getInt32(1));
+            newVal = m_builder->CreateSub(oldVal, m_builder->getInt32(1), "dec");
         }
 
         m_builder->CreateStore(newVal, addr);
@@ -312,18 +329,18 @@ Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
 
     if (node->op == "-") {
         Value* operand = getValueOf(node->operand);
-        return m_builder->CreateNeg(operand, "negtmp");
+        return m_builder->CreateNeg(operand, "neg");
     } else if (node->op == "!") {
         Value* operand = getValueOf(node->operand);
-        return m_builder->CreateNot(operand, "nottmp");
+        return m_builder->CreateNot(operand, "not");
     } else if (node->op == "&") {
         return getAddressOf(node->operand);
     } else if (node->op == "*") {
         Value* ptr = getValueOf(node->operand);
-        return m_builder->CreateLoad(ptr, "dereftmp");
+        return m_builder->CreateLoad(ptr, "deref");
     }
 
-    return LogError("Unknown unary operator: " + node->op);
+    llvm_unreachable("Unknown unary operator");
 }
 
 Value* CodeGen::visitIntegerLiteral(IntegerLiteralNode* node) {
@@ -343,11 +360,8 @@ Value* CodeGen::visitStringLiteral(StringLiteralNode* node) {
 }
 
 Value* CodeGen::visitIdentifierExpr(IdentifierExprNode* node) {
-    throw std::runtime_error(
-        "visitIdentifierExpr should not be called directly, use getAddressOf() or getValueOf() "
-        "instead"
-    );
-    return nullptr;
+    // Should not be called directly - use getAddressOf() or getValueOf()
+    llvm_unreachable("visitIdentifierExpr called directly");
 }
 
 Value* CodeGen::visitCallExpr(CallExprNode* node) {
@@ -363,15 +377,22 @@ Value* CodeGen::visitCastExpr(CastExprNode* node) {
 }
 
 Value* CodeGen::visitMemberExpr(MemberExprNode* node) {
-    // TODO: Implement member access
-    std::cout << "Generating member expression\n";
-    return nullptr;
+    Value* structPtr = node->arrowAccess ? getValueOf(node->object) : getAddressOf(node->object);
+
+    Type* structTypeRaw = structPtr->getType()->getPointerElementType();
+    StructType* structType = cast<StructType>(structTypeRaw);
+
+    std::string structName = structType->getName().str();
+    unsigned fieldIndex = m_structInfos[structName].fields[node->member].first;
+
+    return m_builder->CreateStructGEP(structType, structPtr, fieldIndex, "field_ptr");
 }
 
 Value* CodeGen::visitIndexExpr(IndexExprNode* node) {
-    // TODO: Implement array indexing
-    std::cout << "Generating index expression\n";
-    return nullptr;
+    Value* array = getAddressOf(node->array);
+    Value* index = getValueOf(node->index);
+
+    return m_builder->CreateGEP(array, index, "index_ptr");
 }
 
 Value* CodeGen::visitCommaExpr(CommaExprNode* node) {
@@ -399,9 +420,5 @@ Type* CodeGen::visitPointerType(PointerTypeNode* node) {
 }
 
 Type* CodeGen::visitNamedType(NamedTypeNode* node) {
-    Type* type = m_namedTypes[node->identifier];
-    if (!type) {
-        return LogError("Unknown named type: " + node->identifier);
-    }
-    return type;
+    return m_namedTypes[node->identifier];
 }

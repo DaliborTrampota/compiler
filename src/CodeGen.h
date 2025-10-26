@@ -25,10 +25,13 @@ class CodeGen {
     std::unique_ptr<Module> m_module;
     std::unique_ptr<IRBuilder<>> m_builder;
 
-    // Symbol table for variables
-    std::unordered_map<std::string, llvm::Type*> m_namedTypes;
-
-    //llvm::Value* m_lastValue
+    // Symbol table for namedTypes
+    struct StructInfo {
+        llvm::Type* type;
+        std::unordered_map < std::string, std::pair<unsigned, llvm::Type*> fields;
+    };
+    std::unordered_map<std::string, StructInfo> m_structInfos;
+    std::unordered_map<std::string, Type*> m_namedTypes;
 
   public:
     CodeGen(const std::string& moduleName);
