@@ -11,9 +11,5 @@ struct BlockStatementNode : public StatementNode {
 
     static BlockStatementNode* Empty() { return new BlockStatementNode({}); }
 
-    void accept(CodeGen& codeGen) override {
-        for (auto* stmt : body) {
-            stmt->accept(codeGen);
-        }
-    }
+    void accept(CodeGen& codeGen) override { codeGen.visitBlockStatement(this); }
 };

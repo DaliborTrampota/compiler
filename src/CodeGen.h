@@ -1,8 +1,10 @@
 #pragma once
 
-#include <map>
 #include <memory>
 #include <string>
+#include <unordered_map>
+
+#include "Context.h"
 
 
 #include <llvm/IR/IRBuilder.h>
@@ -17,12 +19,16 @@ using namespace llvm;
 
 class CodeGen {
   private:
+    std::unique_ptr<Context> m_scopeCtx = Context::create(nullptr, Context::Global);
+
     std::unique_ptr<LLVMContext> m_context;
     std::unique_ptr<Module> m_module;
     std::unique_ptr<IRBuilder<>> m_builder;
 
     // Symbol table for variables
-    std::map<std::string, llvm::Value*> m_namedValues;
+    std::unordered_map<std::string, llvm::Type*> m_namedTypes;
+
+    //llvm::Value* m_lastValue
 
   public:
     CodeGen(const std::string& moduleName);
@@ -36,11 +42,13 @@ class CodeGen {
     // Visitor methods for declarations
     void visitFunctionDeclaration(FunctionDeclNode* node);
     void visitFunctionDefinition(FunctionDeclNode* node);
+    void visitFunctionPtrDeclaration(FunctionPtrDeclNode* node);
     void visitVariableDeclaration(VariableDeclNode* node);
     void visitStructDeclaration(StructDeclNode* node);
     void visitStructDefinition(StructDeclNode* node);
 
     // Visitor methods for statements
+    llvm::Value* visitBlockStatement(BlockStatementNode* node);
     void visitIfStatement(IfStatementNode* node);            // todo
     void visitWhileStatement(WhileStatementNode* node);      // todo
     void visitDoWhileStatement(DoWhileStatementNode* node);  // todo

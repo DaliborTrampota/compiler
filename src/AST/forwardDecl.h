@@ -18,6 +18,8 @@ struct WhileStatementNode;
 struct DoWhileStatementNode;
 struct ForStatementNode;
 struct ReturnStatementNode;
+struct CaseStatementNode;
+struct SwitchStatementNode;
 
 struct ExpressionNode;
 struct BinaryExprNode;
