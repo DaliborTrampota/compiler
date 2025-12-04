@@ -17,6 +17,9 @@ int main(int argc, char* argv[]) {
     ProgramNode* program = fromJSON(ast);
     printAST(program);
 
+    CodeGen codeGen("MyProgram");
+    codeGen.generate(program);
+
     //   InitializeAllTargets();
     //   InitializeAllTargetMCs();
     //   InitializeAllAsmPrinters();

@@ -3,41 +3,10 @@
 #include <iostream>
 #include <string>
 
+#include <llvm/IR/Verifier.h>
+#include <llvm/Support/raw_ostream.h>
 
-#include "AST/ProgramNode.h"
-#include "AST/declaration/DeclarationNode.h"
-#include "AST/declaration/FunctionDeclNode.h"
-#include "AST/declaration/ParameterDeclNode.h"
-#include "AST/declaration/StructDeclNode.h"
-#include "AST/declaration/VariableDeclNode.h"
-
-
-#include "AST/statement/BlockStatementNode.h"
-#include "AST/statement/DoWhileStatementNode.h"
-#include "AST/statement/ExpressionStatementNode.h"
-#include "AST/statement/ForStatementNode.h"
-#include "AST/statement/IfStatementNode.h"
-#include "AST/statement/ReturnStatementNode.h"
-#include "AST/statement/StatementNode.h"
-#include "AST/statement/WhileStatementNode.h"
-
-
-#include "AST/expression/BinaryExprNode.h"
-#include "AST/expression/CallExprNode.h"
-#include "AST/expression/CastExprNode.h"
-#include "AST/expression/CommaExprNode.h"
-#include "AST/expression/ExpressionNode.h"
-#include "AST/expression/IdentifierExprNode.h"
-#include "AST/expression/IndexExprNode.h"
-#include "AST/expression/LiteralExprNode.h"
-#include "AST/expression/MemberExprNode.h"
-#include "AST/expression/UnaryExprNode.h"
-
-
-#include "AST/type/NamedTypeNode.h"
-#include "AST/type/PointerTypeNode.h"
-#include "AST/type/PrimitiveTypeNode.h"
-#include "AST/type/TypeNode.h"
+#include "AST/includeNodes.h"
 
 
 using namespace llvm;
@@ -56,6 +25,15 @@ void CodeGen::generate(ProgramNode* program) {
     for (auto* declaration : program->declarations) {
         declaration->accept(*this);
     }
+
+    // Verify the entire module for consistency
+    std::string errorMsg;
+    raw_string_ostream errorStream(errorMsg);
+    if (verifyModule(*m_module, &errorStream)) {
+        std::cerr << "Module verification failed:\n" << errorMsg << "\n";
+        throw std::runtime_error("Invalid LLVM IR generated");
+    }
+}
 }
 
 // ==== Accessor methods ====
@@ -114,7 +92,9 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
 
     BasicBlock* currentBB = m_builder->GetInsertBlock();
     if (!currentBB->getTerminator()) {
-        if (node->returnType->kind == PrimitiveTypeNode::Void) {
+        // Check if return type is void using the LLVM type
+        Type* returnType = node->returnType->accept(*this);
+        if (returnType->isVoidTy()) {
             m_builder->CreateRetVoid();
         } else {
             throw std::runtime_error("Missing return in non-void function: " + node->identifier);
@@ -128,24 +108,25 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
 //TODO global and constant variables
 void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
     Type* type = node->type->accept(*this);
-    AllocaInst* alloca = nullptr;
+    AllocaInst* allocaInst = nullptr;
     if (node->arraySize) {
         int arrSize = dynamic_cast<IntegerLiteralNode*>(node->arraySize)->value;
         ArrayType* arrT = ArrayType::get(type, arrSize);
-        alloca = m_builder->CreateAlloca(arrT, 0, node->identifier);
+        allocaInst = m_builder->CreateAlloca(arrT, 0, node->identifier);
 
         // TODO: Array initializers not yet supported
         assert(!node->initializer && "Array initializers not implemented");
 
     } else {
-        alloca = m_builder->CreateAlloca(type, 0, node->identifier);
+        allocaInst = m_builder->CreateAlloca(type, 0, node->identifier);
         if (node->initializer) {
             auto* idNode = dynamic_cast<IdentifierExprNode*>(node->initializer);
-            if (idNode && (Function* func = m_module->getFunction(idNode->name))) {
-                m_builder->CreateStore(func, alloca);
+            Function* func = idNode ? m_module->getFunction(idNode->name) : nullptr;
+            if (func) {
+                m_builder->CreateStore(func, allocaInst);
             } else {
                 Value* initVal = getValueOf(node->initializer);
-                m_builder->CreateStore(initVal, alloca);
+                m_builder->CreateStore(initVal, allocaInst);
             }
         }
     }
@@ -157,15 +138,15 @@ void CodeGen::visitStructDeclaration(StructDeclNode* node) {
     StructType* type = StructType::create(m_context, node->identifier);
     m_namedTypes[node->identifier] = type;
 
-    StructInfo info{.type = type, .fields = {}};
+    StructInfo info{type, {}};
     m_structInfos[node->identifier] = info;
 }
 
 void CodeGen::visitStructDefinition(StructDeclNode* node) {
-    StructType* type = m_namedTypes[node->identifier];
+    StructType* type = dyn_cast_or_null<StructType>(m_namedTypes[node->identifier]);
     if (!type) {
         visitStructDeclaration(node);
-        type = m_namedTypes[node->identifier];
+        type = cast<StructType>(m_namedTypes[node->identifier]);
     }
 
     std::vector<Type*> fieldTypes;
@@ -173,7 +154,8 @@ void CodeGen::visitStructDefinition(StructDeclNode* node) {
     for (VariableDeclNode* field : node->fields) {
         Type* fieldType = field->type->accept(*this);
         fieldTypes.push_back(fieldType);
-        info.fields.emplace(field->identifier, {fieldTypes.size() - 1, fieldType});
+        unsigned fieldIndex = static_cast<unsigned>(fieldTypes.size() - 1);
+        info.fields[field->identifier] = {fieldIndex, fieldType};
     }
 
     type->setBody(fieldTypes);

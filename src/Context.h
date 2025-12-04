@@ -16,7 +16,11 @@ struct Context {
 
     std::unique_ptr<Context> parent = nullptr;
     Type type;
-    std::unordered_map<std::string, llvm::AllocaInst*> namedValues;
+
+
+    Context(std::unique_ptr<Context> parent, Type type = Function)
+        : parent(std::move(parent)),
+          type(type) {}
 
     static std::unique_ptr<Context> create(std::unique_ptr<Context> parent, Type type = Function) {
         return std::make_unique<Context>(std::move(parent), type);
@@ -36,8 +40,5 @@ struct Context {
 
     void set(const std::string& name, llvm::Value* value) { namedValues[name] = value; }
   private:
-    Context(std::unique_ptr<Context> parent, Type type = Function)
-        : parent(std::move(parent)),
-          type(type) {}
     std::unordered_map<std::string, llvm::Value*> namedValues;
 };

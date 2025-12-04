@@ -18,7 +18,7 @@ namespace {
 
     template <typename NodeT>
     NodeT* parseNode(const nlohmann::json& json) {
-        std::static_assert(false, "parseNode is not implemented for this node type");
+        static_assert(false, "parseNode is not implemented for this node type");
         return nullptr;
     }
 
@@ -94,7 +94,7 @@ namespace {
             );
         } else if (nodeType == "CallExpression") {
             return new CallExprNode(
-                parseNode<ExpressionNode>(json["callee"]),
+                static_cast<IdentifierExprNode*>(parseNode<ExpressionNode>(json["callee"])),
                 parseNodes<ExpressionNode, ExpressionNode>(json["arguments"])
             );
         } else if (nodeType == "MemberAccessExpression") {

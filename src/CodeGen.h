@@ -28,7 +28,7 @@ class CodeGen {
     // Symbol table for namedTypes
     struct StructInfo {
         llvm::Type* type;
-        std::unordered_map < std::string, std::pair<unsigned, llvm::Type*>> fields;
+        std::unordered_map<std::string, std::pair<unsigned, llvm::Type*>> fields;
     };
     std::unordered_map<std::string, StructInfo> m_structInfos;
     std::unordered_map<std::string, llvm::Type*> m_namedTypes;
