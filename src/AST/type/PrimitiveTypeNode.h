@@ -22,8 +22,9 @@ struct PrimitiveTypeNode : public TypeNode {
             return Int;
         if (kindStr == "double")
             return Double;
-        if (kindStr == "Char")
+        if (kindStr == "char")
             return Char;
+        assert(false && "Invalid primitive type");
     }
 
     llvm::Type* accept(CodeGen& codeGen) override { return codeGen.visitPrimitiveType(this); }

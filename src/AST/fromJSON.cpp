@@ -68,10 +68,13 @@ namespace {
                 return new IntegerLiteralNode(json["value"].get<int>());
             } else if (kind == "double") {
                 return new DoubleLiteralNode(json["value"].get<double>());
-            } else if (kind == "character") {
-                return new CharacterLiteralNode(json["value"].get<char>());
+            } else if (kind == "char") {
+                std::string charStr = json["value"].get<std::string>();
+                return new CharacterLiteralNode(charStr.empty() ? '\0' : charStr[0]);
             } else if (kind == "string") {
                 return new StringLiteralNode(json["value"].get<std::string>());
+            } else {
+                throw std::runtime_error("Unknown literal kind: " + kind);
             }
         } else if (nodeType == "Identifier") {
             return new IdentifierExprNode(json["identifier"].get<std::string>());
@@ -128,7 +131,7 @@ namespace {
                 parseNodes<StatementNode, StatementNode>(json["statements"])
             );
         } else if (nodeType == "IfStatement") {
-            nlohmann::json elseBranch = json["elseBranch"];
+            nlohmann::json elseBranch = json.contains("elseBranch") ? json["elseBranch"] : nullptr;
             return new IfStatementNode(
                 parseNode<ExpressionNode>(json["condition"]),
                 parseNode<StatementNode>(json["thenBranch"]),
@@ -141,7 +144,7 @@ namespace {
                 parseNode<StatementNode>(json["loopBody"])
             );
         } else if (nodeType == "ForStatement") {
-            nlohmann::json init = json["init"];
+            nlohmann::json init = json.contains("init") ? json["init"] : nullptr;
             ForStatementNode::InitT initT{};
             if (init.is_null()) {
                 //initT = nullptr;  // TODO?
@@ -154,8 +157,8 @@ namespace {
                 }
             }
 
-            nlohmann::json update = json["update"];
-            nlohmann::json condition = json["condition"];
+            nlohmann::json update = json.contains("update") ? json["update"] : nullptr;
+            nlohmann::json condition = json.contains("condition") ? json["condition"] : nullptr;
             return new ForStatementNode(
                 initT,
                 update.is_null() ? nullptr : parseNode<ExpressionNode>(update),
@@ -183,8 +186,10 @@ namespace {
     DeclarationNode* parseNode<DeclarationNode>(const nlohmann::json& json) {
         std::string nodeType = json["nodeType"].get<std::string>();
         if (nodeType == "VariableDeclaration") {
-            nlohmann::json arraySize = json["arraySize"];
-            nlohmann::json initializer = json["initializer"];
+            nlohmann::json arraySize = json.contains("arraySize") ? json["arraySize"] : nullptr;
+            nlohmann::json initializer =
+                json.contains("initializer") ? json["initializer"] : nullptr;
+
 
             return new VariableDeclNode(
                 json["identifier"].get<std::string>(),
@@ -201,7 +206,7 @@ namespace {
                 json["identifier"].get<std::string>(),
                 parseNode<TypeNode>(json["returnType"]),
                 parseNodes<DeclarationNode, ParameterDeclNode>(json["parameters"]),
-                BlockStatementNode::Empty()
+                nullptr  // No body for declarations
             );
         } else if (nodeType == "FunctionDefinition") {
             return new FunctionDeclNode(
