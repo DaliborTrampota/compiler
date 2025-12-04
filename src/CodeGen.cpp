@@ -554,7 +554,28 @@ Value* CodeGen::visitCharacterLiteral(CharacterLiteralNode* node) {
 }
 
 Value* CodeGen::visitStringLiteral(StringLiteralNode* node) {
-    return ConstantDataArray::getString(*m_context, node->value);
+    // this is wrong because we need to pass ptr to the string not the string itself
+    // return ConstantDataArray::getString(*m_context, node->value);
+
+
+    // Create a global constant string
+    Constant* strConstant = ConstantDataArray::getString(*m_context, node->value);
+    GlobalVariable* globalStr = new GlobalVariable(
+        *m_module,
+        strConstant->getType(),
+        true,  // isConstant
+        GlobalValue::PrivateLinkage,
+        strConstant,
+        ".str"
+    );
+
+    // Return pointer to the first element of the string (i8*)
+    std::vector<Constant*> indices = {
+        ConstantInt::get(Type::getInt32Ty(*m_context), 0),
+        ConstantInt::get(Type::getInt32Ty(*m_context), 0)
+    };
+
+    return ConstantExpr::getGetElementPtr(strConstant->getType(), globalStr, indices);
 }
 
 Value* CodeGen::visitIdentifierExpr(IdentifierExprNode* node) {
