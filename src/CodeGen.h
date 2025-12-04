@@ -41,6 +41,8 @@ class CodeGen {
     IRBuilder<>* getBuilder();
 
     void generate(ProgramNode* program);
+    void print();                                   // Print IR to stdout
+    void printToFile(const std::string& filename);  // Save IR to file
 
     // Visitor methods for declarations
     void visitFunctionDeclaration(FunctionDeclNode* node);

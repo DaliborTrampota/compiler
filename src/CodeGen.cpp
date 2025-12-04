@@ -34,6 +34,19 @@ void CodeGen::generate(ProgramNode* program) {
         throw std::runtime_error("Invalid LLVM IR generated");
     }
 }
+
+void CodeGen::print() {
+    m_module->print(outs(), nullptr);
+}
+
+void CodeGen::printToFile(const std::string& filename) {
+    std::error_code EC;
+    raw_fd_ostream file(filename, EC);
+    if (EC) {
+        std::cerr << "Error opening file: " << EC.message() << "\n";
+        return;
+    }
+    m_module->print(file, nullptr);
 }
 
 // ==== Accessor methods ====
@@ -83,8 +96,13 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
 
     // Add parameters to symbol table
     m_scopeCtx = Context::create(std::move(m_scopeCtx));
+    unsigned idx = 0;
     for (auto& arg : function->args()) {
-        m_scopeCtx->namedValues[std::string(arg.getName())] = &arg;
+        std::string argName = std::string(arg.getName());
+        m_scopeCtx->set(argName, &arg);
+        m_scopeCtx->setType(argName, node->parameters[idx]->type->accept(*this));
+        m_scopeCtx->setTypeNode(argName, node->parameters[idx]->type);  // Track AST type
+        idx++;
     }
 
     // Generate body
@@ -131,11 +149,13 @@ void CodeGen::visitVariableDeclaration(VariableDeclNode* node) {
         }
     }
 
-    m_scopeCtx->namedValues[node->identifier] = alloca;
+    m_scopeCtx->set(node->identifier, allocaInst);
+    m_scopeCtx->setType(node->identifier, type);
+    m_scopeCtx->setTypeNode(node->identifier, node->type);  // Track AST type for opaque pointers
 }
 
 void CodeGen::visitStructDeclaration(StructDeclNode* node) {
-    StructType* type = StructType::create(m_context, node->identifier);
+    StructType* type = StructType::create(*m_context, node->identifier);
     m_namedTypes[node->identifier] = type;
 
     StructInfo info{type, {}};
@@ -168,11 +188,10 @@ void CodeGen::visitFunctionPtrDeclaration(FunctionPtrDeclNode* node) {
         paramTypes.push_back(param->type->accept(*this));
     }
     FunctionType* funcType = FunctionType::get(returnType, paramTypes, false);
-    PointerType* ptrType = PointerType::get(funcType, 0);
 
-    //AllocaInst* alloca = m_builder->CreateAlloca(ptrType, 0, node->identifier);
-    //m_scopeCtx->namedValues[node->identifier] = alloca;
-    m_namedTypes[node->identifier] = ptrType;
+    // For opaque pointers, just store the FunctionType (not PointerType)
+    // When creating variables with this type, they'll be pointers automatically
+    m_namedTypes[node->identifier] = funcType;
 }
 
 // ==== Statement visitors ====
@@ -400,16 +419,37 @@ Value* CodeGen::getValueOf(ExpressionNode* node) {
             std::cerr << "Unknown variable name: " << idNode->name << "\n";
             return nullptr;
         }
-        return m_builder->CreateLoad(ptr, idNode->name);  // Load the value
+        Type* type = m_scopeCtx->getType(idNode->name);
+        return m_builder->CreateLoad(type, ptr, idNode->name);
     }
     if (auto* memberNode = dynamic_cast<MemberExprNode*>(node)) {
         Value* ptr = visitMemberExpr(memberNode);
-        return m_builder->CreateLoad(ptr, "member");
+        // Get field type from struct info
+        IdentifierExprNode* objId = dynamic_cast<IdentifierExprNode*>(memberNode->object);
+        TypeNode* objTypeNode = m_scopeCtx->getTypeNode(objId->name);
+
+        StructType* structType = nullptr;
+        if (memberNode->arrowAccess) {
+            PointerTypeNode* ptrType = dynamic_cast<PointerTypeNode*>(objTypeNode);
+            structType = cast<StructType>(ptrType->baseType->accept(*this));
+        } else {
+            structType = cast<StructType>(objTypeNode->accept(*this));
+        }
+
+        std::string structName = structType->getName().str();
+        Type* fieldType = m_structInfos[structName].fields[memberNode->member].second;
+        return m_builder->CreateLoad(fieldType, ptr, "member");
     }
 
     if (auto* indexNode = dynamic_cast<IndexExprNode*>(node)) {
         Value* ptr = visitIndexExpr(indexNode);
-        return m_builder->CreateLoad(ptr, "index");
+        // Get element type from array type
+        IdentifierExprNode* arrId = dynamic_cast<IdentifierExprNode*>(indexNode->array);
+        Type* arrayType = m_scopeCtx->getType(arrId->name);
+
+        // arrayType is [N x T], get T
+        Type* elemType = cast<ArrayType>(arrayType)->getElementType();
+        return m_builder->CreateLoad(elemType, ptr, "elem");
     }
 
     // For everything else (literals, expressions, calls, etc.)
@@ -452,7 +492,19 @@ Value* CodeGen::visitBinaryExpr(BinaryExprNode* node) {
 Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
     if (node->op == "++" || node->op == "--") {
         Value* addr = getAddressOf(node->operand);
-        Value* oldVal = m_builder->CreateLoad(addr);
+        // Get the type for the load
+        Type* type = nullptr;
+        if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node->operand)) {
+            type = m_scopeCtx->getType(idNode->name);
+        } else {
+            // For member/index expressions, get from allocaInst
+            if (auto* allocaInst = dyn_cast<AllocaInst>(addr)) {
+                type = allocaInst->getAllocatedType();
+            } else {
+                llvm_unreachable("Cannot determine type for increment/decrement");
+            }
+        }
+        Value* oldVal = m_builder->CreateLoad(type, addr);
         Value* newVal = nullptr;
 
         if (node->op == "++") {
@@ -475,7 +527,15 @@ Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
         return getAddressOf(node->operand);
     } else if (node->op == "*") {
         Value* ptr = getValueOf(node->operand);
-        return m_builder->CreateLoad(ptr, "deref");
+        // For dereference, we need the pointee type
+        // Get from the TypeNode - the operand should have a pointer type
+        if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node->operand)) {
+            TypeNode* astType = m_scopeCtx->getTypeNode(idNode->name);
+            PointerTypeNode* ptrType = dynamic_cast<PointerTypeNode*>(astType);
+            Type* pointeeType = ptrType->baseType->accept(*this);
+            return m_builder->CreateLoad(pointeeType, ptr, "deref");
+        }
+        llvm_unreachable("Dereference on complex expressions not yet supported");
     }
 
     llvm_unreachable("Unknown unary operator");
@@ -512,12 +572,23 @@ Value* CodeGen::visitCallExpr(CallExprNode* node) {
     Function* func = m_module->getFunction(node->callee->name);
     if (func) {
         // Direct function call: foo(args)
-        return m_builder->CreateCall(func, args, "direct_call");
+        // Only give it a name if it returns a value (not void)
+        const char* name = func->getReturnType()->isVoidTy() ? "" : "direct_call";
+        return m_builder->CreateCall(func, args, name);
     }
 
-    // load function pointer (from scope context)
+    // Indirect call through function pointer
     Value* funcPtr = getValueOf(node->callee);
-    return m_builder->CreateCall(funcPtr, args, "funcptr_call");
+
+    // For opaque pointers, we need the FunctionType
+    // The variable's type is the function type (we stored it when creating the variable)
+    // For function pointer variables, the stored type should be the function type
+    Type* varType = m_scopeCtx->getType(node->callee->name);
+    FunctionType* funcType = cast<FunctionType>(varType);
+
+    // Only give it a name if it returns a value (not void)
+    const char* name = funcType->getReturnType()->isVoidTy() ? "" : "indirect_call";
+    return m_builder->CreateCall(funcType, funcPtr, args, name);
 }
 
 Value* CodeGen::visitCastExpr(CastExprNode* node) {
@@ -526,23 +597,64 @@ Value* CodeGen::visitCastExpr(CastExprNode* node) {
     return nullptr;
 }
 
+// This is mostly ai work, i implemented it myself with llvm docs but it was not working on llvm ir v22 due to opaque pointers stuff i dont understand. my solution was 5 lines using getPointerElementType, now i need to track all types
 Value* CodeGen::visitMemberExpr(MemberExprNode* node) {
     Value* structPtr = node->arrowAccess ? getValueOf(node->object) : getAddressOf(node->object);
 
-    Type* structTypeRaw = structPtr->getType()->getPointerElementType();
-    StructType* structType = cast<StructType>(structTypeRaw);
+    // For opaque pointers (LLVM 15+), get the type from the value itself
+    Type* structType = nullptr;
 
-    std::string structName = structType->getName().str();
+    if (node->arrowAccess) {
+        // obj->field: structPtr is a loaded pointer value
+        // For a pointer loaded from an allocaInst, we need to know what it points to
+        // Use the stored type from Context
+        if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node->object)) {
+            Type* varType = m_scopeCtx->getType(idNode->name);
+            // varType should be the struct type (stored when variable was created)
+            structType = varType;
+        }
+    } else {
+        // obj.field: structPtr is a pointer to struct (AllocaInst or Argument)
+        if (auto* allocaInst = dyn_cast<AllocaInst>(structPtr)) {
+            // Use getAllocatedType() as per LLVM opaque pointer migration guide
+            structType = allocaInst->getAllocatedType();
+        } else if (isa<Argument>(structPtr)) {
+            // For arguments, we need to use stored type
+            if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node->object)) {
+                structType = m_scopeCtx->getType(idNode->name);
+            }
+        }
+    }
+
+    StructType* st = cast<StructType>(structType);
+    std::string structName = st->getName().str();
     unsigned fieldIndex = m_structInfos[structName].fields[node->member].first;
 
-    return m_builder->CreateStructGEP(structType, structPtr, fieldIndex, "field_ptr");
+    return m_builder->CreateStructGEP(st, structPtr, fieldIndex, "field_ptr");
 }
 
 Value* CodeGen::visitIndexExpr(IndexExprNode* node) {
-    Value* array = getAddressOf(node->array);
+    Value* arrayPtr = getAddressOf(node->array);
     Value* index = getValueOf(node->index);
 
-    return m_builder->CreateGEP(array, index, "index_ptr");
+    // For opaque pointers, we need the array/element type
+    Type* arrayType = nullptr;
+    if (auto* allocaInst = dyn_cast<AllocaInst>(arrayPtr)) {
+        // Use getAllocatedType() for allocas (LLVM migration guide)
+        arrayType = allocaInst->getAllocatedType();
+    } else if (auto* idNode = dynamic_cast<IdentifierExprNode*>(node->array)) {
+        // For arguments or other cases, use stored type
+        arrayType = m_scopeCtx->getType(idNode->name);
+    } else {
+        llvm_unreachable("Array indexing on complex expressions requires type tracking");
+    }
+
+    // For arrays allocated with allocaInst [N x type], use indices [0, index]
+    // The first 0 gets to the array start, the second is the actual index
+    std::vector<Value*> indices = {m_builder->getInt32(0), index};
+
+    // For opaque pointers, CreateGEP needs: (Type, ptr, indices)
+    return m_builder->CreateGEP(arrayType, arrayPtr, indices, "elem_ptr");
 }
 
 Value* CodeGen::visitCommaExpr(CommaExprNode* node) {
