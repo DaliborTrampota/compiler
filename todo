@@ -1,0 +1,3 @@
+- errors:
+    - 2: multipledeclaration
+    - 7 onwards

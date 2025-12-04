@@ -90,22 +90,33 @@ void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
         function = m_module->getFunction(node->identifier);
     }
 
+    // skip generation of body if its empty, this is workaround for poor ast so I can add runtime functions like print_number;
+    if (node->body->body.size() == 0)
+        return;
+
     // gen function body
     BasicBlock* entry = BasicBlock::Create(*m_context, "entry", function);
     m_builder->SetInsertPoint(entry);
+
 
     // Add parameters to symbol table
     m_scopeCtx = Context::create(std::move(m_scopeCtx));
     unsigned idx = 0;
     for (auto& arg : function->args()) {
         std::string argName = std::string(arg.getName());
-        m_scopeCtx->set(argName, &arg);
-        m_scopeCtx->setType(argName, node->parameters[idx]->type->accept(*this));
+        Type* argType = arg.getType();  // Get type directly from LLVM argument
+
+        // Allocate space for the parameter and store its value there
+        // This makes parameters consistent with local variables
+        AllocaInst* alloca = m_builder->CreateAlloca(argType, nullptr, argName);
+        m_builder->CreateStore(&arg, alloca);
+
+        m_scopeCtx->set(argName, alloca);
+        m_scopeCtx->setType(argName, argType);
         m_scopeCtx->setTypeNode(argName, node->parameters[idx]->type);  // Track AST type
         idx++;
     }
 
-    // Generate body
     visitBlockStatement(node->body);
 
     BasicBlock* currentBB = m_builder->GetInsertBlock();
@@ -521,8 +532,13 @@ Value* CodeGen::visitUnaryExpr(UnaryExprNode* node) {
         Value* operand = getValueOf(node->operand);
         return m_builder->CreateNeg(operand, "neg");
     } else if (node->op == "!") {
+        // compare to zero and return 1 if zero, 0 if non-zero
         Value* operand = getValueOf(node->operand);
-        return m_builder->CreateNot(operand, "not");
+        Value* zero = Constant::getNullValue(operand->getType());
+        return m_builder->CreateICmpEQ(operand, zero, "lnot");
+    } else if (node->op == "~") {
+        Value* operand = getValueOf(node->operand);
+        return m_builder->CreateNot(operand, "bnot");
     } else if (node->op == "&") {
         return getAddressOf(node->operand);
     } else if (node->op == "*") {
