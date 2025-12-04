@@ -1,0 +1,539 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "VariableDeclaration",
+      "identifier": "global_var",
+      "type": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/2_variables.tc",
+          "line": 3,
+          "column": 1
+        }
+      },
+      "initializer": {
+        "nodeType": "Literal",
+        "kind": "integer",
+        "value": 10,
+        "location": {
+          "filename": "../examples/2_variables.tc",
+          "line": 3,
+          "column": 18
+        }
+      },
+      "location": {
+        "filename": "../examples/2_variables.tc",
+        "line": 3,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "VariableDeclaration",
+      "identifier": "global_array",
+      "type": {
+        "nodeType": "PrimitiveType",
+        "kind": "char",
+        "location": {
+          "filename": "../examples/2_variables.tc",
+          "line": 4,
+          "column": 1
+        }
+      },
+      "arraySize": {
+        "nodeType": "Literal",
+        "kind": "integer",
+        "value": 10,
+        "location": {
+          "filename": "../examples/2_variables.tc",
+          "line": 4,
+          "column": 19
+        }
+      },
+      "location": {
+        "filename": "../examples/2_variables.tc",
+        "line": 4,
+        "column": 6
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/2_variables.tc",
+          "line": 6,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "a",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 7,
+                  "column": 5
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 7,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 7,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "b",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 8,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 5,
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 8,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 8,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 8,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "c",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "double",
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 9,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "double",
+                "value": 3.14,
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 9,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 9,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 9,
+              "column": 12
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "d",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "char",
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 10,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "char",
+                "value": "x",
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 10,
+                  "column": 14
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 10,
+                "column": 10
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 10,
+              "column": 10
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "nums",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 12,
+                  "column": 5
+                }
+              },
+              "arraySize": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 5,
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 12,
+                  "column": 14
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 12,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 12,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "=",
+              "left": {
+                "nodeType": "IndexExpression",
+                "array": {
+                  "nodeType": "Identifier",
+                  "identifier": "nums",
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 13,
+                    "column": 5
+                  }
+                },
+                "index": {
+                  "nodeType": "Literal",
+                  "kind": "integer",
+                  "value": 0,
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 13,
+                    "column": 10
+                  }
+                },
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 13,
+                  "column": 5
+                }
+              },
+              "right": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 1,
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 13,
+                  "column": 15
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 13,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 13,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "ptr",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "int",
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 15,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 15,
+                  "column": 10
+                }
+              },
+              "initializer": {
+                "nodeType": "UnaryExpression",
+                "operator": "&",
+                "prefix": true,
+                "operand": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 15,
+                    "column": 17
+                  }
+                },
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 15,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 15,
+                "column": 10
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 15,
+              "column": 10
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "=",
+              "left": {
+                "nodeType": "UnaryExpression",
+                "operator": "*",
+                "prefix": true,
+                "operand": {
+                  "nodeType": "Identifier",
+                  "identifier": "ptr",
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 16,
+                    "column": 6
+                  }
+                },
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 16,
+                  "column": 5
+                }
+              },
+              "right": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 7,
+                "location": {
+                  "filename": "../examples/2_variables.tc",
+                  "line": 16,
+                  "column": 12
+                }
+              },
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 16,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 16,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "MultipleDeclaration",
+              "declarations": [
+                {
+                  "nodeType": "VariableDeclaration",
+                  "identifier": "x",
+                  "type": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "int",
+                    "location": {
+                      "filename": "../examples/2_variables.tc",
+                      "line": 18,
+                      "column": 5
+                    }
+                  },
+                  "initializer": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 1,
+                    "location": {
+                      "filename": "../examples/2_variables.tc",
+                      "line": 18,
+                      "column": 13
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 18,
+                    "column": 9
+                  }
+                },
+                {
+                  "nodeType": "VariableDeclaration",
+                  "identifier": "y",
+                  "type": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "int",
+                    "location": {
+                      "filename": "../examples/2_variables.tc",
+                      "line": 18,
+                      "column": 16
+                    }
+                  },
+                  "initializer": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 2,
+                    "location": {
+                      "filename": "../examples/2_variables.tc",
+                      "line": 18,
+                      "column": 24
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 18,
+                    "column": 20
+                  }
+                },
+                {
+                  "nodeType": "VariableDeclaration",
+                  "identifier": "z",
+                  "type": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "int",
+                    "location": {
+                      "filename": "../examples/2_variables.tc",
+                      "line": 18,
+                      "column": 27
+                    }
+                  },
+                  "initializer": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 3,
+                    "location": {
+                      "filename": "../examples/2_variables.tc",
+                      "line": 18,
+                      "column": 35
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/2_variables.tc",
+                    "line": 18,
+                    "column": 31
+                  }
+                }
+              ],
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 18,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 18,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/2_variables.tc",
+                "line": 20,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/2_variables.tc",
+              "line": 20,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/2_variables.tc",
+          "line": 6,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/2_variables.tc",
+        "line": 6,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/2_variables.tc",
+    "line": 0,
+    "column": 0
+  }
+}

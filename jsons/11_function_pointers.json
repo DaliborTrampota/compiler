@@ -1,0 +1,610 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionPointerDeclaration",
+      "identifier": "BinaryOperation",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 4,
+          "column": 9
+        }
+      },
+      "parameterTypes": [
+        {
+          "nodeType": "PrimitiveType",
+          "kind": "int",
+          "location": {
+            "filename": "../examples/11_function_pointers.tc",
+            "line": 4,
+            "column": 32
+          }
+        },
+        {
+          "nodeType": "PrimitiveType",
+          "kind": "int",
+          "location": {
+            "filename": "../examples/11_function_pointers.tc",
+            "line": 4,
+            "column": 37
+          }
+        }
+      ],
+      "location": {
+        "filename": "../examples/11_function_pointers.tc",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "nodeType": "FunctionPointerDeclaration",
+      "identifier": "VoidFunction",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "void",
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 5,
+          "column": 9
+        }
+      },
+      "parameterTypes": [
+      ],
+      "location": {
+        "filename": "../examples/11_function_pointers.tc",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "add",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 8,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "a",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 8,
+              "column": 9
+            }
+          },
+          "location": {
+            "filename": "../examples/11_function_pointers.tc",
+            "line": 8,
+            "column": 13
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "b",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 8,
+              "column": 16
+            }
+          },
+          "location": {
+            "filename": "../examples/11_function_pointers.tc",
+            "line": 8,
+            "column": 20
+          }
+        }
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "+",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "a",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 9,
+                  "column": 12
+                }
+              },
+              "right": {
+                "nodeType": "Identifier",
+                "identifier": "b",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 9,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 9,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 9,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 8,
+          "column": 23
+        }
+      },
+      "location": {
+        "filename": "../examples/11_function_pointers.tc",
+        "line": 8,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "subtract",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 12,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "a",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 12,
+              "column": 14
+            }
+          },
+          "location": {
+            "filename": "../examples/11_function_pointers.tc",
+            "line": 12,
+            "column": 18
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "b",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 12,
+              "column": 21
+            }
+          },
+          "location": {
+            "filename": "../examples/11_function_pointers.tc",
+            "line": 12,
+            "column": 25
+          }
+        }
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "-",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "a",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 13,
+                  "column": 12
+                }
+              },
+              "right": {
+                "nodeType": "Identifier",
+                "identifier": "b",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 13,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 13,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 13,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 12,
+          "column": 28
+        }
+      },
+      "location": {
+        "filename": "../examples/11_function_pointers.tc",
+        "line": 12,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "hello",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "void",
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 16,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+        ],
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 16,
+          "column": 14
+        }
+      },
+      "location": {
+        "filename": "../examples/11_function_pointers.tc",
+        "line": 16,
+        "column": 6
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 19,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "operation",
+              "type": {
+                "nodeType": "NamedType",
+                "identifier": "BinaryOperation",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 21,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Identifier",
+                "identifier": "add",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 21,
+                  "column": 33
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 21,
+                "column": 21
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 21,
+              "column": 21
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "result",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 22,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "CallExpression",
+                "callee": {
+                  "nodeType": "Identifier",
+                  "identifier": "operation",
+                  "location": {
+                    "filename": "../examples/11_function_pointers.tc",
+                    "line": 22,
+                    "column": 18
+                  }
+                },
+                "arguments": [
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 5,
+                    "location": {
+                      "filename": "../examples/11_function_pointers.tc",
+                      "line": 22,
+                      "column": 28
+                    }
+                  },
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 3,
+                    "location": {
+                      "filename": "../examples/11_function_pointers.tc",
+                      "line": 22,
+                      "column": 31
+                    }
+                  }
+                ],
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 22,
+                  "column": 18
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 22,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 22,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "=",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "operation",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 24,
+                  "column": 5
+                }
+              },
+              "right": {
+                "nodeType": "Identifier",
+                "identifier": "subtract",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 24,
+                  "column": 17
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 24,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 24,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "=",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "result",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 25,
+                  "column": 5
+                }
+              },
+              "right": {
+                "nodeType": "CallExpression",
+                "callee": {
+                  "nodeType": "Identifier",
+                  "identifier": "operation",
+                  "location": {
+                    "filename": "../examples/11_function_pointers.tc",
+                    "line": 25,
+                    "column": 14
+                  }
+                },
+                "arguments": [
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 10,
+                    "location": {
+                      "filename": "../examples/11_function_pointers.tc",
+                      "line": 25,
+                      "column": 24
+                    }
+                  },
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 4,
+                    "location": {
+                      "filename": "../examples/11_function_pointers.tc",
+                      "line": 25,
+                      "column": 28
+                    }
+                  }
+                ],
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 25,
+                  "column": 14
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 25,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 25,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "greet",
+              "type": {
+                "nodeType": "NamedType",
+                "identifier": "VoidFunction",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 27,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Identifier",
+                "identifier": "hello",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 27,
+                  "column": 26
+                }
+              },
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 27,
+                "column": 18
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 27,
+              "column": 18
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "CallExpression",
+              "callee": {
+                "nodeType": "Identifier",
+                "identifier": "greet",
+                "location": {
+                  "filename": "../examples/11_function_pointers.tc",
+                  "line": 28,
+                  "column": 5
+                }
+              },
+              "arguments": [
+              ],
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 28,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 28,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/11_function_pointers.tc",
+                "line": 30,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/11_function_pointers.tc",
+              "line": 30,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/11_function_pointers.tc",
+          "line": 19,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/11_function_pointers.tc",
+        "line": 19,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/11_function_pointers.tc",
+    "line": 0,
+    "column": 0
+  }
+}

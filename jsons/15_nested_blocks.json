@@ -1,0 +1,410 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/15_nested_blocks.tc",
+          "line": 3,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "x",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/15_nested_blocks.tc",
+                  "line": 4,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 10,
+                "location": {
+                  "filename": "../examples/15_nested_blocks.tc",
+                  "line": 4,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/15_nested_blocks.tc",
+                "line": 4,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/15_nested_blocks.tc",
+              "line": 4,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "BlockStatement",
+            "statements": [
+              {
+                "nodeType": "ExpressionStatement",
+                "expression": {
+                  "nodeType": "VariableDeclaration",
+                  "identifier": "y",
+                  "type": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "int",
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 7,
+                      "column": 9
+                    }
+                  },
+                  "initializer": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 20,
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 7,
+                      "column": 17
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/15_nested_blocks.tc",
+                    "line": 7,
+                    "column": 13
+                  }
+                },
+                "location": {
+                  "filename": "../examples/15_nested_blocks.tc",
+                  "line": 7,
+                  "column": 13
+                }
+              },
+              {
+                "nodeType": "ExpressionStatement",
+                "expression": {
+                  "nodeType": "VariableDeclaration",
+                  "identifier": "x",
+                  "type": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "int",
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 8,
+                      "column": 9
+                    }
+                  },
+                  "initializer": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 30,
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 8,
+                      "column": 17
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/15_nested_blocks.tc",
+                    "line": 8,
+                    "column": 13
+                  }
+                },
+                "location": {
+                  "filename": "../examples/15_nested_blocks.tc",
+                  "line": 8,
+                  "column": 13
+                }
+              },
+              {
+                "nodeType": "BlockStatement",
+                "statements": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "VariableDeclaration",
+                      "identifier": "z",
+                      "type": {
+                        "nodeType": "PrimitiveType",
+                        "kind": "int",
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 11,
+                          "column": 13
+                        }
+                      },
+                      "initializer": {
+                        "nodeType": "Literal",
+                        "kind": "integer",
+                        "value": 40,
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 11,
+                          "column": 21
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/15_nested_blocks.tc",
+                        "line": 11,
+                        "column": 17
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 11,
+                      "column": 17
+                    }
+                  },
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "x",
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 12,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "integer",
+                        "value": 50,
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 12,
+                          "column": 17
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/15_nested_blocks.tc",
+                        "line": 12,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 12,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "VariableDeclaration",
+                      "identifier": "sum",
+                      "type": {
+                        "nodeType": "PrimitiveType",
+                        "kind": "int",
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 14,
+                          "column": 13
+                        }
+                      },
+                      "initializer": {
+                        "nodeType": "BinaryExpression",
+                        "operator": "+",
+                        "left": {
+                          "nodeType": "BinaryExpression",
+                          "operator": "+",
+                          "left": {
+                            "nodeType": "Identifier",
+                            "identifier": "x",
+                            "location": {
+                              "filename": "../examples/15_nested_blocks.tc",
+                              "line": 14,
+                              "column": 23
+                            }
+                          },
+                          "right": {
+                            "nodeType": "Identifier",
+                            "identifier": "y",
+                            "location": {
+                              "filename": "../examples/15_nested_blocks.tc",
+                              "line": 14,
+                              "column": 27
+                            }
+                          },
+                          "location": {
+                            "filename": "../examples/15_nested_blocks.tc",
+                            "line": 14,
+                            "column": 23
+                          }
+                        },
+                        "right": {
+                          "nodeType": "Identifier",
+                          "identifier": "z",
+                          "location": {
+                            "filename": "../examples/15_nested_blocks.tc",
+                            "line": 14,
+                            "column": 31
+                          }
+                        },
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 14,
+                          "column": 23
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/15_nested_blocks.tc",
+                        "line": 14,
+                        "column": 17
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 14,
+                      "column": 17
+                    }
+                  }
+                ],
+                "location": {
+                  "filename": "../examples/15_nested_blocks.tc",
+                  "line": 10,
+                  "column": 9
+                }
+              },
+              {
+                "nodeType": "BlockStatement",
+                "statements": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "VariableDeclaration",
+                      "identifier": "y",
+                      "type": {
+                        "nodeType": "PrimitiveType",
+                        "kind": "int",
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 18,
+                          "column": 13
+                        }
+                      },
+                      "initializer": {
+                        "nodeType": "Literal",
+                        "kind": "integer",
+                        "value": 60,
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 18,
+                          "column": 21
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/15_nested_blocks.tc",
+                        "line": 18,
+                        "column": 17
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 18,
+                      "column": 17
+                    }
+                  },
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "x",
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 19,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "integer",
+                        "value": 70,
+                        "location": {
+                          "filename": "../examples/15_nested_blocks.tc",
+                          "line": 19,
+                          "column": 17
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/15_nested_blocks.tc",
+                        "line": 19,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/15_nested_blocks.tc",
+                      "line": 19,
+                      "column": 13
+                    }
+                  }
+                ],
+                "location": {
+                  "filename": "../examples/15_nested_blocks.tc",
+                  "line": 17,
+                  "column": 9
+                }
+              }
+            ],
+            "location": {
+              "filename": "../examples/15_nested_blocks.tc",
+              "line": 6,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Identifier",
+              "identifier": "x",
+              "location": {
+                "filename": "../examples/15_nested_blocks.tc",
+                "line": 23,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/15_nested_blocks.tc",
+              "line": 23,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/15_nested_blocks.tc",
+          "line": 3,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/15_nested_blocks.tc",
+        "line": 3,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/15_nested_blocks.tc",
+    "line": 0,
+    "column": 0
+  }
+}

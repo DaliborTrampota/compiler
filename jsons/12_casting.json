@@ -1,0 +1,423 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/12_casting.tc",
+          "line": 3,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "i",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 4,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 42,
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 4,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 4,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 4,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "d",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "double",
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 5,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "double",
+                "value": 3.14,
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 5,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 5,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 5,
+              "column": 12
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "i2",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 7,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "CastExpression",
+                "targetType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "int",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 7,
+                    "column": 19
+                  }
+                },
+                "expression": {
+                  "nodeType": "Identifier",
+                  "identifier": "d",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 7,
+                    "column": 24
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 7,
+                  "column": 14
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 7,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 7,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "d2",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "double",
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 8,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "CastExpression",
+                "targetType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "double",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 8,
+                    "column": 22
+                  }
+                },
+                "expression": {
+                  "nodeType": "Identifier",
+                  "identifier": "i",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 8,
+                    "column": 30
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 8,
+                  "column": 17
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 8,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 8,
+              "column": 12
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "generic_ptr",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "void",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 11,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 11,
+                  "column": 11
+                }
+              },
+              "initializer": {
+                "nodeType": "UnaryExpression",
+                "operator": "&",
+                "prefix": true,
+                "operand": {
+                  "nodeType": "Identifier",
+                  "identifier": "i",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 11,
+                    "column": 26
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 11,
+                  "column": 25
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 11,
+                "column": 11
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 11,
+              "column": 11
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "int_ptr",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "int",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 12,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 12,
+                  "column": 10
+                }
+              },
+              "initializer": {
+                "nodeType": "CastExpression",
+                "targetType": {
+                  "nodeType": "PointerType",
+                  "baseType": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "int",
+                    "location": {
+                      "filename": "../examples/12_casting.tc",
+                      "line": 12,
+                      "column": 25
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 12,
+                    "column": 29
+                  }
+                },
+                "expression": {
+                  "nodeType": "Identifier",
+                  "identifier": "generic_ptr",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 12,
+                    "column": 31
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 12,
+                  "column": 20
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 12,
+                "column": 10
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 12,
+              "column": 10
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "char_ptr",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "char",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 15,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 15,
+                  "column": 11
+                }
+              },
+              "initializer": {
+                "nodeType": "CastExpression",
+                "targetType": {
+                  "nodeType": "PointerType",
+                  "baseType": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "char",
+                    "location": {
+                      "filename": "../examples/12_casting.tc",
+                      "line": 15,
+                      "column": 27
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 15,
+                    "column": 32
+                  }
+                },
+                "expression": {
+                  "nodeType": "Identifier",
+                  "identifier": "int_ptr",
+                  "location": {
+                    "filename": "../examples/12_casting.tc",
+                    "line": 15,
+                    "column": 34
+                  }
+                },
+                "location": {
+                  "filename": "../examples/12_casting.tc",
+                  "line": 15,
+                  "column": 22
+                }
+              },
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 15,
+                "column": 11
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 15,
+              "column": 11
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/12_casting.tc",
+                "line": 17,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/12_casting.tc",
+              "line": 17,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/12_casting.tc",
+          "line": 3,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/12_casting.tc",
+        "line": 3,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/12_casting.tc",
+    "line": 0,
+    "column": 0
+  }
+}

@@ -1,0 +1,899 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/4_logical.tc",
+          "line": 3,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "a",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 4,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 5,
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 4,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 4,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 4,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "b",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 5,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 3,
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 5,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 5,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 5,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "logical_and",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 8,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "&&",
+                "left": {
+                  "nodeType": "BinaryExpression",
+                  "operator": ">",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "a",
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 8,
+                      "column": 24
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 0,
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 8,
+                      "column": 28
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 8,
+                    "column": 24
+                  }
+                },
+                "right": {
+                  "nodeType": "BinaryExpression",
+                  "operator": ">",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "b",
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 8,
+                      "column": 35
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 0,
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 8,
+                      "column": 39
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 8,
+                    "column": 35
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 8,
+                  "column": 24
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 8,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 8,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "logical_or",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 9,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "||",
+                "left": {
+                  "nodeType": "BinaryExpression",
+                  "operator": ">",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "a",
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 9,
+                      "column": 23
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 10,
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 9,
+                      "column": 27
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 9,
+                    "column": 23
+                  }
+                },
+                "right": {
+                  "nodeType": "BinaryExpression",
+                  "operator": ">",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "b",
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 9,
+                      "column": 35
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 0,
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 9,
+                      "column": 39
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 9,
+                    "column": 35
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 9,
+                  "column": 23
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 9,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 9,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "logical_not",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 10,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "UnaryExpression",
+                "operator": "!",
+                "prefix": true,
+                "operand": {
+                  "nodeType": "BinaryExpression",
+                  "operator": "==",
+                  "left": {
+                    "nodeType": "Identifier",
+                    "identifier": "a",
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 10,
+                      "column": 25
+                    }
+                  },
+                  "right": {
+                    "nodeType": "Identifier",
+                    "identifier": "b",
+                    "location": {
+                      "filename": "../examples/4_logical.tc",
+                      "line": 10,
+                      "column": 30
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 10,
+                    "column": 25
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 10,
+                  "column": 23
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 10,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 10,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "equal",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 13,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "==",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 13,
+                    "column": 18
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 13,
+                    "column": 23
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 13,
+                  "column": 18
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 13,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 13,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "not_equal",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 14,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "!=",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 14,
+                    "column": 22
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 14,
+                    "column": 27
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 14,
+                  "column": 22
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 14,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 14,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "greater",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 15,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": ">",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 15,
+                    "column": 20
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 15,
+                    "column": 24
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 15,
+                  "column": 20
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 15,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 15,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "less_equal",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 16,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "<=",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 16,
+                    "column": 23
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 16,
+                    "column": 28
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 16,
+                  "column": 23
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 16,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 16,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "greater_equal",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 17,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": ">=",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 17,
+                    "column": 26
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 17,
+                    "column": 31
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 17,
+                  "column": 26
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 17,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 17,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "bitwise_and",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 20,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "&",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 20,
+                    "column": 23
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 20,
+                    "column": 27
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 20,
+                  "column": 23
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 20,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 20,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "bitwise_or",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 21,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "|",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 21,
+                    "column": 22
+                  }
+                },
+                "right": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 21,
+                    "column": 26
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 21,
+                  "column": 22
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 21,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 21,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "bitwise_not",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 22,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "UnaryExpression",
+                "operator": "~",
+                "prefix": true,
+                "operand": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 22,
+                    "column": 24
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 22,
+                  "column": 23
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 22,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 22,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "left_shift",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 23,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": "<<",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 23,
+                    "column": 22
+                  }
+                },
+                "right": {
+                  "nodeType": "Literal",
+                  "kind": "integer",
+                  "value": 1,
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 23,
+                    "column": 27
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 23,
+                  "column": 22
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 23,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 23,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "right_shift",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 24,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "BinaryExpression",
+                "operator": ">>",
+                "left": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 24,
+                    "column": 23
+                  }
+                },
+                "right": {
+                  "nodeType": "Literal",
+                  "kind": "integer",
+                  "value": 1,
+                  "location": {
+                    "filename": "../examples/4_logical.tc",
+                    "line": 24,
+                    "column": 28
+                  }
+                },
+                "location": {
+                  "filename": "../examples/4_logical.tc",
+                  "line": 24,
+                  "column": 23
+                }
+              },
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 24,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 24,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/4_logical.tc",
+                "line": 26,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/4_logical.tc",
+              "line": 26,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/4_logical.tc",
+          "line": 3,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/4_logical.tc",
+        "line": 3,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/4_logical.tc",
+    "line": 0,
+    "column": 0
+  }
+}

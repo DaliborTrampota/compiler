@@ -1,0 +1,501 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/8_switch_case.tc",
+          "line": 3,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "day",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/8_switch_case.tc",
+                  "line": 4,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 3,
+                "location": {
+                  "filename": "../examples/8_switch_case.tc",
+                  "line": 4,
+                  "column": 15
+                }
+              },
+              "location": {
+                "filename": "../examples/8_switch_case.tc",
+                "line": 4,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/8_switch_case.tc",
+              "line": 4,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "day_name",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "char",
+                  "location": {
+                    "filename": "../examples/8_switch_case.tc",
+                    "line": 5,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/8_switch_case.tc",
+                  "line": 5,
+                  "column": 11
+                }
+              },
+              "location": {
+                "filename": "../examples/8_switch_case.tc",
+                "line": 5,
+                "column": 11
+              }
+            },
+            "location": {
+              "filename": "../examples/8_switch_case.tc",
+              "line": 5,
+              "column": 11
+            }
+          },
+          {
+            "nodeType": "SwitchStatement",
+            "expression": {
+              "nodeType": "Identifier",
+              "identifier": "day",
+              "location": {
+                "filename": "../examples/8_switch_case.tc",
+                "line": 7,
+                "column": 13
+              }
+            },
+            "cases": [
+              {
+                "isDefault": false,
+                "value": 1,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 9,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Monday\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 9,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 9,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 9,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 10,
+                      "column": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "isDefault": false,
+                "value": 2,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 12,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Tuesday\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 12,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 12,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 12,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 13,
+                      "column": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "isDefault": false,
+                "value": 3,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 15,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Wednesday\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 15,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 15,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 15,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 16,
+                      "column": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "isDefault": false,
+                "value": 4,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 18,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Thursday\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 18,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 18,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 18,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 19,
+                      "column": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "isDefault": false,
+                "value": 5,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 21,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Friday\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 21,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 21,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 21,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 22,
+                      "column": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "isDefault": false,
+                "value": 6,
+                "body": []
+              },
+              {
+                "isDefault": false,
+                "value": 7,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 25,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Weekend\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 25,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 25,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 25,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 26,
+                      "column": 13
+                    }
+                  }
+                ]
+              },
+              {
+                "isDefault": true,
+                "body": [
+                  {
+                    "nodeType": "ExpressionStatement",
+                    "expression": {
+                      "nodeType": "BinaryExpression",
+                      "operator": "=",
+                      "left": {
+                        "nodeType": "Identifier",
+                        "identifier": "day_name",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 28,
+                          "column": 13
+                        }
+                      },
+                      "right": {
+                        "nodeType": "Literal",
+                        "kind": "string",
+                        "value": "\"Invalid day\"",
+                        "location": {
+                          "filename": "../examples/8_switch_case.tc",
+                          "line": 28,
+                          "column": 24
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/8_switch_case.tc",
+                        "line": 28,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 28,
+                      "column": 13
+                    }
+                  },
+                  {
+                    "nodeType": "BreakStatement",
+                    "location": {
+                      "filename": "../examples/8_switch_case.tc",
+                      "line": 29,
+                      "column": 13
+                    }
+                  }
+                ]
+              }
+            ],
+            "location": {
+              "filename": "../examples/8_switch_case.tc",
+              "line": 7,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/8_switch_case.tc",
+                "line": 32,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/8_switch_case.tc",
+              "line": 32,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/8_switch_case.tc",
+          "line": 3,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/8_switch_case.tc",
+        "line": 3,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/8_switch_case.tc",
+    "line": 0,
+    "column": 0
+  }
+}

@@ -1,0 +1,577 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDeclaration",
+      "identifier": "add",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 4,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "a",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 4,
+              "column": 9
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 4,
+            "column": 13
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "b",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 4,
+              "column": 16
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 4,
+            "column": 20
+          }
+        }
+      ],
+      "location": {
+        "filename": "../examples/5_functions.tc",
+        "line": 4,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "multiply",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 7,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "a",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 7,
+              "column": 14
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 7,
+            "column": 18
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "b",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 7,
+              "column": 21
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 7,
+            "column": 25
+          }
+        }
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "*",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "a",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 8,
+                  "column": 12
+                }
+              },
+              "right": {
+                "nodeType": "Identifier",
+                "identifier": "b",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 8,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 8,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 8,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 7,
+          "column": 28
+        }
+      },
+      "location": {
+        "filename": "../examples/5_functions.tc",
+        "line": 7,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "print_number",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "void",
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 12,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "n",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 12,
+              "column": 19
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 12,
+            "column": 23
+          }
+        }
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+        ],
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 12,
+          "column": 26
+        }
+      },
+      "location": {
+        "filename": "../examples/5_functions.tc",
+        "line": 12,
+        "column": 6
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "get_random",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 17,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 4,
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 18,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 18,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 17,
+          "column": 18
+        }
+      },
+      "location": {
+        "filename": "../examples/5_functions.tc",
+        "line": 17,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 21,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "x",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 22,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "CallExpression",
+                "callee": {
+                  "nodeType": "Identifier",
+                  "identifier": "add",
+                  "location": {
+                    "filename": "../examples/5_functions.tc",
+                    "line": 22,
+                    "column": 13
+                  }
+                },
+                "arguments": [
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 5,
+                    "location": {
+                      "filename": "../examples/5_functions.tc",
+                      "line": 22,
+                      "column": 17
+                    }
+                  },
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 7,
+                    "location": {
+                      "filename": "../examples/5_functions.tc",
+                      "line": 22,
+                      "column": 20
+                    }
+                  }
+                ],
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 22,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 22,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 22,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "y",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 23,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "CallExpression",
+                "callee": {
+                  "nodeType": "Identifier",
+                  "identifier": "multiply",
+                  "location": {
+                    "filename": "../examples/5_functions.tc",
+                    "line": 23,
+                    "column": 13
+                  }
+                },
+                "arguments": [
+                  {
+                    "nodeType": "Identifier",
+                    "identifier": "x",
+                    "location": {
+                      "filename": "../examples/5_functions.tc",
+                      "line": 23,
+                      "column": 22
+                    }
+                  },
+                  {
+                    "nodeType": "Literal",
+                    "kind": "integer",
+                    "value": 2,
+                    "location": {
+                      "filename": "../examples/5_functions.tc",
+                      "line": 23,
+                      "column": 25
+                    }
+                  }
+                ],
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 23,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 23,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 23,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "CallExpression",
+              "callee": {
+                "nodeType": "Identifier",
+                "identifier": "print_number",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 24,
+                  "column": 5
+                }
+              },
+              "arguments": [
+                {
+                  "nodeType": "Identifier",
+                  "identifier": "y",
+                  "location": {
+                    "filename": "../examples/5_functions.tc",
+                    "line": 24,
+                    "column": 18
+                  }
+                }
+              ],
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 24,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 24,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 25,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 25,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 21,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/5_functions.tc",
+        "line": 21,
+        "column": 5
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "add",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 29,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "a",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 29,
+              "column": 9
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 29,
+            "column": 13
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "b",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 29,
+              "column": 16
+            }
+          },
+          "location": {
+            "filename": "../examples/5_functions.tc",
+            "line": 29,
+            "column": 20
+          }
+        }
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "BinaryExpression",
+              "operator": "+",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "a",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 30,
+                  "column": 12
+                }
+              },
+              "right": {
+                "nodeType": "Identifier",
+                "identifier": "b",
+                "location": {
+                  "filename": "../examples/5_functions.tc",
+                  "line": 30,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/5_functions.tc",
+                "line": 30,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/5_functions.tc",
+              "line": 30,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/5_functions.tc",
+          "line": 29,
+          "column": 23
+        }
+      },
+      "location": {
+        "filename": "../examples/5_functions.tc",
+        "line": 29,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/5_functions.tc",
+    "line": 0,
+    "column": 0
+  }
+}

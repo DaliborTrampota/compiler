@@ -1,0 +1,879 @@
+{
+  "nodeType": "Program",
+  "declarations": [
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "swap_bytes",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "void",
+        "location": {
+          "filename": "../examples/13_void_pointers.tc",
+          "line": 4,
+          "column": 1
+        }
+      },
+      "parameters": [
+        {
+          "nodeType": "Parameter",
+          "identifier": "a",
+          "type": {
+            "nodeType": "PointerType",
+            "baseType": {
+              "nodeType": "PrimitiveType",
+              "kind": "void",
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 4,
+                "column": 17
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 4,
+              "column": 23
+            }
+          },
+          "location": {
+            "filename": "../examples/13_void_pointers.tc",
+            "line": 4,
+            "column": 23
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "b",
+          "type": {
+            "nodeType": "PointerType",
+            "baseType": {
+              "nodeType": "PrimitiveType",
+              "kind": "void",
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 4,
+                "column": 26
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 4,
+              "column": 32
+            }
+          },
+          "location": {
+            "filename": "../examples/13_void_pointers.tc",
+            "line": 4,
+            "column": 32
+          }
+        },
+        {
+          "nodeType": "Parameter",
+          "identifier": "size",
+          "type": {
+            "nodeType": "PrimitiveType",
+            "kind": "int",
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 4,
+              "column": 35
+            }
+          },
+          "location": {
+            "filename": "../examples/13_void_pointers.tc",
+            "line": 4,
+            "column": 39
+          }
+        }
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "temp",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "char",
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 5,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 5,
+                  "column": 11
+                }
+              },
+              "initializer": {
+                "nodeType": "CastExpression",
+                "targetType": {
+                  "nodeType": "PointerType",
+                  "baseType": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "char",
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 5,
+                      "column": 23
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 5,
+                    "column": 28
+                  }
+                },
+                "expression": {
+                  "nodeType": "Identifier",
+                  "identifier": "a",
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 5,
+                    "column": 30
+                  }
+                },
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 5,
+                  "column": 18
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 5,
+                "column": 11
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 5,
+              "column": 11
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "temp2",
+              "type": {
+                "nodeType": "PointerType",
+                "baseType": {
+                  "nodeType": "PrimitiveType",
+                  "kind": "char",
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 6,
+                    "column": 5
+                  }
+                },
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 6,
+                  "column": 11
+                }
+              },
+              "initializer": {
+                "nodeType": "CastExpression",
+                "targetType": {
+                  "nodeType": "PointerType",
+                  "baseType": {
+                    "nodeType": "PrimitiveType",
+                    "kind": "char",
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 6,
+                      "column": 24
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 6,
+                    "column": 29
+                  }
+                },
+                "expression": {
+                  "nodeType": "Identifier",
+                  "identifier": "b",
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 6,
+                    "column": 31
+                  }
+                },
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 6,
+                  "column": 19
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 6,
+                "column": 11
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 6,
+              "column": 11
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "tmp",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "char",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 7,
+                  "column": 5
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 7,
+                "column": 10
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 7,
+              "column": 10
+            }
+          },
+          {
+            "nodeType": "ForStatement",
+            "initialization": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "i",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 10,
+                  "column": 10
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 0,
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 10,
+                  "column": 18
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 10,
+                "column": 14
+              }
+            },
+            "condition": {
+              "nodeType": "BinaryExpression",
+              "operator": "<",
+              "left": {
+                "nodeType": "Identifier",
+                "identifier": "i",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 10,
+                  "column": 21
+                }
+              },
+              "right": {
+                "nodeType": "Identifier",
+                "identifier": "size",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 10,
+                  "column": 25
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 10,
+                "column": 21
+              }
+            },
+            "update": {
+              "nodeType": "UnaryExpression",
+              "operator": "++",
+              "prefix": false,
+              "operand": {
+                "nodeType": "Identifier",
+                "identifier": "i",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 10,
+                  "column": 31
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 10,
+                "column": 31
+              }
+            },
+            "body": {
+              "nodeType": "BlockStatement",
+              "statements": [
+                {
+                  "nodeType": "ExpressionStatement",
+                  "expression": {
+                    "nodeType": "BinaryExpression",
+                    "operator": "=",
+                    "left": {
+                      "nodeType": "Identifier",
+                      "identifier": "tmp",
+                      "location": {
+                        "filename": "../examples/13_void_pointers.tc",
+                        "line": 11,
+                        "column": 9
+                      }
+                    },
+                    "right": {
+                      "nodeType": "IndexExpression",
+                      "array": {
+                        "nodeType": "Identifier",
+                        "identifier": "temp",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 11,
+                          "column": 15
+                        }
+                      },
+                      "index": {
+                        "nodeType": "Identifier",
+                        "identifier": "i",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 11,
+                          "column": 20
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/13_void_pointers.tc",
+                        "line": 11,
+                        "column": 15
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 11,
+                      "column": 9
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 11,
+                    "column": 9
+                  }
+                },
+                {
+                  "nodeType": "ExpressionStatement",
+                  "expression": {
+                    "nodeType": "BinaryExpression",
+                    "operator": "=",
+                    "left": {
+                      "nodeType": "IndexExpression",
+                      "array": {
+                        "nodeType": "Identifier",
+                        "identifier": "temp",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 12,
+                          "column": 9
+                        }
+                      },
+                      "index": {
+                        "nodeType": "Identifier",
+                        "identifier": "i",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 12,
+                          "column": 14
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/13_void_pointers.tc",
+                        "line": 12,
+                        "column": 9
+                      }
+                    },
+                    "right": {
+                      "nodeType": "IndexExpression",
+                      "array": {
+                        "nodeType": "Identifier",
+                        "identifier": "temp2",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 12,
+                          "column": 19
+                        }
+                      },
+                      "index": {
+                        "nodeType": "Identifier",
+                        "identifier": "i",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 12,
+                          "column": 25
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/13_void_pointers.tc",
+                        "line": 12,
+                        "column": 19
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 12,
+                      "column": 9
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 12,
+                    "column": 9
+                  }
+                },
+                {
+                  "nodeType": "ExpressionStatement",
+                  "expression": {
+                    "nodeType": "BinaryExpression",
+                    "operator": "=",
+                    "left": {
+                      "nodeType": "IndexExpression",
+                      "array": {
+                        "nodeType": "Identifier",
+                        "identifier": "temp2",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 13,
+                          "column": 9
+                        }
+                      },
+                      "index": {
+                        "nodeType": "Identifier",
+                        "identifier": "i",
+                        "location": {
+                          "filename": "../examples/13_void_pointers.tc",
+                          "line": 13,
+                          "column": 15
+                        }
+                      },
+                      "location": {
+                        "filename": "../examples/13_void_pointers.tc",
+                        "line": 13,
+                        "column": 9
+                      }
+                    },
+                    "right": {
+                      "nodeType": "Identifier",
+                      "identifier": "tmp",
+                      "location": {
+                        "filename": "../examples/13_void_pointers.tc",
+                        "line": 13,
+                        "column": 20
+                      }
+                    },
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 13,
+                      "column": 9
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 13,
+                    "column": 9
+                  }
+                }
+              ],
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 10,
+                "column": 36
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 10,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/13_void_pointers.tc",
+          "line": 4,
+          "column": 45
+        }
+      },
+      "location": {
+        "filename": "../examples/13_void_pointers.tc",
+        "line": 4,
+        "column": 6
+      }
+    },
+    {
+      "nodeType": "FunctionDefinition",
+      "identifier": "main",
+      "returnType": {
+        "nodeType": "PrimitiveType",
+        "kind": "int",
+        "location": {
+          "filename": "../examples/13_void_pointers.tc",
+          "line": 17,
+          "column": 1
+        }
+      },
+      "parameters": [
+      ],
+      "body": {
+        "nodeType": "BlockStatement",
+        "statements": [
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "a",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 18,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 5,
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 18,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 18,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 18,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "b",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 19,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "integer",
+                "value": 10,
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 19,
+                  "column": 13
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 19,
+                "column": 9
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 19,
+              "column": 9
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "CallExpression",
+              "callee": {
+                "nodeType": "Identifier",
+                "identifier": "swap_bytes",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 22,
+                  "column": 5
+                }
+              },
+              "arguments": [
+                {
+                  "nodeType": "UnaryExpression",
+                  "operator": "&",
+                  "prefix": true,
+                  "operand": {
+                    "nodeType": "Identifier",
+                    "identifier": "a",
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 22,
+                      "column": 17
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 22,
+                    "column": 16
+                  }
+                },
+                {
+                  "nodeType": "UnaryExpression",
+                  "operator": "&",
+                  "prefix": true,
+                  "operand": {
+                    "nodeType": "Identifier",
+                    "identifier": "b",
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 22,
+                      "column": 21
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 22,
+                    "column": 20
+                  }
+                },
+                {
+                  "nodeType": "Literal",
+                  "kind": "integer",
+                  "value": 4,
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 22,
+                    "column": 24
+                  }
+                }
+              ],
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 22,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 22,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "x",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "double",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 24,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "double",
+                "value": 3.14,
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 24,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 24,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 24,
+              "column": 12
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "VariableDeclaration",
+              "identifier": "y",
+              "type": {
+                "nodeType": "PrimitiveType",
+                "kind": "double",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 25,
+                  "column": 5
+                }
+              },
+              "initializer": {
+                "nodeType": "Literal",
+                "kind": "double",
+                "value": 2.71,
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 25,
+                  "column": 16
+                }
+              },
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 25,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 25,
+              "column": 12
+            }
+          },
+          {
+            "nodeType": "ExpressionStatement",
+            "expression": {
+              "nodeType": "CallExpression",
+              "callee": {
+                "nodeType": "Identifier",
+                "identifier": "swap_bytes",
+                "location": {
+                  "filename": "../examples/13_void_pointers.tc",
+                  "line": 28,
+                  "column": 5
+                }
+              },
+              "arguments": [
+                {
+                  "nodeType": "UnaryExpression",
+                  "operator": "&",
+                  "prefix": true,
+                  "operand": {
+                    "nodeType": "Identifier",
+                    "identifier": "x",
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 28,
+                      "column": 17
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 28,
+                    "column": 16
+                  }
+                },
+                {
+                  "nodeType": "UnaryExpression",
+                  "operator": "&",
+                  "prefix": true,
+                  "operand": {
+                    "nodeType": "Identifier",
+                    "identifier": "y",
+                    "location": {
+                      "filename": "../examples/13_void_pointers.tc",
+                      "line": 28,
+                      "column": 21
+                    }
+                  },
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 28,
+                    "column": 20
+                  }
+                },
+                {
+                  "nodeType": "Literal",
+                  "kind": "integer",
+                  "value": 8,
+                  "location": {
+                    "filename": "../examples/13_void_pointers.tc",
+                    "line": 28,
+                    "column": 24
+                  }
+                }
+              ],
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 28,
+                "column": 5
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 28,
+              "column": 5
+            }
+          },
+          {
+            "nodeType": "ReturnStatement",
+            "expression": {
+              "nodeType": "Literal",
+              "kind": "integer",
+              "value": 0,
+              "location": {
+                "filename": "../examples/13_void_pointers.tc",
+                "line": 30,
+                "column": 12
+              }
+            },
+            "location": {
+              "filename": "../examples/13_void_pointers.tc",
+              "line": 30,
+              "column": 5
+            }
+          }
+        ],
+        "location": {
+          "filename": "../examples/13_void_pointers.tc",
+          "line": 17,
+          "column": 12
+        }
+      },
+      "location": {
+        "filename": "../examples/13_void_pointers.tc",
+        "line": 17,
+        "column": 5
+      }
+    }
+  ],
+  "location": {
+    "filename": "../examples/13_void_pointers.tc",
+    "line": 0,
+    "column": 0
+  }
+}

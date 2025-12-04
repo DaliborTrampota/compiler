@@ -1,0 +1,842 @@
+{
+    "nodeType": "Program",
+    "declarations": [
+        {
+            "nodeType": "StructDefinition",
+            "identifier": "Point",
+            "fields": [
+                {
+                    "nodeType": "VariableDeclaration",
+                    "identifier": "x",
+                    "type": {
+                        "nodeType": "PrimitiveType",
+                        "kind": "int",
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 2,
+                            "column": 5
+                        }
+                    },
+                    "location": {
+                        "filename": "samples/10_pointers.tc",
+                        "line": 2,
+                        "column": 9
+                    }
+                },
+                {
+                    "nodeType": "VariableDeclaration",
+                    "identifier": "y",
+                    "type": {
+                        "nodeType": "PrimitiveType",
+                        "kind": "int",
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 3,
+                            "column": 5
+                        }
+                    },
+                    "location": {
+                        "filename": "samples/10_pointers.tc",
+                        "line": 3,
+                        "column": 9
+                    }
+                }
+            ],
+            "location": {
+                "filename": "samples/10_pointers.tc",
+                "line": 1,
+                "column": 1
+            }
+        },
+        {
+            "nodeType": "FunctionDefinition",
+            "identifier": "swap",
+            "returnType": {
+                "nodeType": "PrimitiveType",
+                "kind": "void",
+                "location": {
+                    "filename": "samples/10_pointers.tc",
+                    "line": 6,
+                    "column": 1
+                }
+            },
+            "parameters": [
+                {
+                    "nodeType": "Parameter",
+                    "identifier": "a",
+                    "type": {
+                        "nodeType": "PointerType",
+                        "baseType": {
+                            "nodeType": "PrimitiveType",
+                            "kind": "int",
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 6,
+                                "column": 11
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 6,
+                            "column": 16
+                        }
+                    },
+                    "location": {
+                        "filename": "samples/10_pointers.tc",
+                        "line": 6,
+                        "column": 16
+                    }
+                },
+                {
+                    "nodeType": "Parameter",
+                    "identifier": "b",
+                    "type": {
+                        "nodeType": "PointerType",
+                        "baseType": {
+                            "nodeType": "PrimitiveType",
+                            "kind": "int",
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 6,
+                                "column": 19
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 6,
+                            "column": 24
+                        }
+                    },
+                    "location": {
+                        "filename": "samples/10_pointers.tc",
+                        "line": 6,
+                        "column": 24
+                    }
+                }
+            ],
+            "body": {
+                "nodeType": "BlockStatement",
+                "statements": [
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "temp",
+                            "type": {
+                                "nodeType": "PrimitiveType",
+                                "kind": "int",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 7,
+                                    "column": 5
+                                }
+                            },
+                            "initializer": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "*",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "a",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 7,
+                                        "column": 17
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 7,
+                                    "column": 16
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 7,
+                                "column": 9
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 7,
+                            "column": 9
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "BinaryExpression",
+                            "operator": "=",
+                            "left": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "*",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "a",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 8,
+                                        "column": 6
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 8,
+                                    "column": 5
+                                }
+                            },
+                            "right": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "*",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "b",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 8,
+                                        "column": 11
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 8,
+                                    "column": 10
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 8,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 8,
+                            "column": 5
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "BinaryExpression",
+                            "operator": "=",
+                            "left": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "*",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "b",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 9,
+                                        "column": 6
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 9,
+                                    "column": 5
+                                }
+                            },
+                            "right": {
+                                "nodeType": "Identifier",
+                                "identifier": "temp",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 9,
+                                    "column": 10
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 9,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 9,
+                            "column": 5
+                        }
+                    }
+                ],
+                "location": {
+                    "filename": "samples/10_pointers.tc",
+                    "line": 6,
+                    "column": 27
+                }
+            },
+            "location": {
+                "filename": "samples/10_pointers.tc",
+                "line": 6,
+                "column": 6
+            }
+        },
+        {
+            "nodeType": "FunctionDefinition",
+            "identifier": "main",
+            "returnType": {
+                "nodeType": "PrimitiveType",
+                "kind": "int",
+                "location": {
+                    "filename": "samples/10_pointers.tc",
+                    "line": 12,
+                    "column": 1
+                }
+            },
+            "parameters": [],
+            "body": {
+                "nodeType": "BlockStatement",
+                "statements": [
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "a",
+                            "type": {
+                                "nodeType": "PrimitiveType",
+                                "kind": "int",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 13,
+                                    "column": 5
+                                }
+                            },
+                            "initializer": {
+                                "nodeType": "Literal",
+                                "kind": "integer",
+                                "value": 5,
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 13,
+                                    "column": 13
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 13,
+                                "column": 9
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 13,
+                            "column": 9
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "b",
+                            "type": {
+                                "nodeType": "PrimitiveType",
+                                "kind": "int",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 14,
+                                    "column": 5
+                                }
+                            },
+                            "initializer": {
+                                "nodeType": "Literal",
+                                "kind": "integer",
+                                "value": 10,
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 14,
+                                    "column": 13
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 14,
+                                "column": 9
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 14,
+                            "column": 9
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "p_int",
+                            "type": {
+                                "nodeType": "PointerType",
+                                "baseType": {
+                                    "nodeType": "PrimitiveType",
+                                    "kind": "int",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 15,
+                                        "column": 5
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 15,
+                                    "column": 10
+                                }
+                            },
+                            "initializer": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "&",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "a",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 15,
+                                        "column": 19
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 15,
+                                    "column": 18
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 15,
+                                "column": 10
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 15,
+                            "column": 10
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "p_int",
+                            "type": {
+                                "nodeType": "PointerType",
+                                "baseType": {
+                                    "nodeType": "PrimitiveType",
+                                    "kind": "int",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 16,
+                                        "column": 5
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 16,
+                                    "column": 10
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 16,
+                                "column": 10
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 16,
+                            "column": 10
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "BinaryExpression",
+                            "operator": "=",
+                            "left": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "*",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "p_int",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 18,
+                                        "column": 6
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 18,
+                                    "column": 5
+                                }
+                            },
+                            "right": {
+                                "nodeType": "Literal",
+                                "kind": "integer",
+                                "value": 7,
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 18,
+                                    "column": 14
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 18,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 18,
+                            "column": 5
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "BinaryExpression",
+                            "operator": "=",
+                            "left": {
+                                "nodeType": "Identifier",
+                                "identifier": "p_int",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 19,
+                                    "column": 5
+                                }
+                            },
+                            "right": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "&",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "b",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 19,
+                                        "column": 14
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 19,
+                                    "column": 13
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 19,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 19,
+                            "column": 5
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "CallExpression",
+                            "callee": {
+                                "nodeType": "Identifier",
+                                "identifier": "swap",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 21,
+                                    "column": 5
+                                }
+                            },
+                            "arguments": [
+                                {
+                                    "nodeType": "UnaryExpression",
+                                    "operator": "*",
+                                    "prefix": true,
+                                    "operand": {
+                                        "nodeType": "Identifier",
+                                        "identifier": "a",
+                                        "location": {
+                                            "filename": "samples/10_pointers.tc",
+                                            "line": 21,
+                                            "column": 11
+                                        }
+                                    },
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 21,
+                                        "column": 10
+                                    }
+                                },
+                                {
+                                    "nodeType": "UnaryExpression",
+                                    "operator": "*",
+                                    "prefix": true,
+                                    "operand": {
+                                        "nodeType": "Identifier",
+                                        "identifier": "b",
+                                        "location": {
+                                            "filename": "samples/10_pointers.tc",
+                                            "line": 21,
+                                            "column": 15
+                                        }
+                                    },
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 21,
+                                        "column": 14
+                                    }
+                                }
+                            ],
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 21,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 21,
+                            "column": 5
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "pt",
+                            "type": {
+                                "nodeType": "NamedType",
+                                "identifier": "Point",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 24,
+                                    "column": 5
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 24,
+                                "column": 11
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 24,
+                            "column": 11
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "BinaryExpression",
+                            "operator": "=",
+                            "left": {
+                                "nodeType": "BinaryExpression",
+                                "operator": "*",
+                                "left": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "Point",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 25,
+                                        "column": 5
+                                    }
+                                },
+                                "right": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "p_pt",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 25,
+                                        "column": 12
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 25,
+                                    "column": 5
+                                }
+                            },
+                            "right": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "&",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "pt",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 25,
+                                        "column": 20
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 25,
+                                    "column": 19
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 25,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 25,
+                            "column": 5
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "BinaryExpression",
+                            "operator": "=",
+                            "left": {
+                                "nodeType": "MemberExpression",
+                                "kind": "arrow",
+                                "object": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "p_pt",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 28,
+                                        "column": 5
+                                    }
+                                },
+                                "member": "x",
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 28,
+                                    "column": 5
+                                }
+                            },
+                            "right": {
+                                "nodeType": "Literal",
+                                "kind": "integer",
+                                "value": 3,
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 28,
+                                    "column": 15
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 28,
+                                "column": 5
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 28,
+                            "column": 5
+                        }
+                    },
+                    {
+                        "nodeType": "ExpressionStatement",
+                        "expression": {
+                            "nodeType": "VariableDeclaration",
+                            "identifier": "pp_int",
+                            "type": {
+                                "nodeType": "PointerType",
+                                "baseType": {
+                                    "nodeType": "PointerType",
+                                    "baseType": {
+                                        "nodeType": "PrimitiveType",
+                                        "kind": "int",
+                                        "location": {
+                                            "filename": "samples/10_pointers.tc",
+                                            "line": 31,
+                                            "column": 5
+                                        }
+                                    },
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 31,
+                                        "column": 9
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 31,
+                                    "column": 11
+                                }
+                            },
+                            "initializer": {
+                                "nodeType": "UnaryExpression",
+                                "operator": "&",
+                                "prefix": true,
+                                "operand": {
+                                    "nodeType": "Identifier",
+                                    "identifier": "p_int",
+                                    "location": {
+                                        "filename": "samples/10_pointers.tc",
+                                        "line": 31,
+                                        "column": 21
+                                    }
+                                },
+                                "location": {
+                                    "filename": "samples/10_pointers.tc",
+                                    "line": 31,
+                                    "column": 20
+                                }
+                            },
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 31,
+                                "column": 11
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 31,
+                            "column": 11
+                        }
+                    },
+                    {
+                        "nodeType": "ReturnStatement",
+                        "expression": {
+                            "nodeType": "Literal",
+                            "kind": "integer",
+                            "value": 0,
+                            "location": {
+                                "filename": "samples/10_pointers.tc",
+                                "line": 33,
+                                "column": 12
+                            }
+                        },
+                        "location": {
+                            "filename": "samples/10_pointers.tc",
+                            "line": 33,
+                            "column": 5
+                        }
+                    }
+                ],
+                "location": {
+                    "filename": "samples/10_pointers.tc",
+                    "line": 12,
+                    "column": 12
+                }
+            },
+            "location": {
+                "filename": "samples/10_pointers.tc",
+                "line": 12,
+                "column": 5
+            }
+        }
+    ],
+    "location": {
+        "filename": "samples/10_pointers.tc",
+        "line": 0,
+        "column": 0
+    }
+}
