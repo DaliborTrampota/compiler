@@ -1,9 +1,7 @@
 #pragma once
 
 #include <llvm/IR/Type.h>
-
-// Forward declaration
-class CodeGen;
+#include "../../CodeGen.h"
 
 struct TypeNode {
     virtual ~TypeNode() = default;

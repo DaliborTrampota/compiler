@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CodeGen.h"
+#include "../../CodeGen.h"
 
 struct StatementNode {
     virtual ~StatementNode() = default;

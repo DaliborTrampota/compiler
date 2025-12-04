@@ -1,9 +1,7 @@
 #pragma once
 
 #include <llvm/IR/Value.h>
-
-// Forward declaration
-class CodeGen;
+#include "../../CodeGen.h"
 
 struct ExpressionNode {
     virtual ~ExpressionNode() = default;

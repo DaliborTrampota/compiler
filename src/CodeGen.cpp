@@ -73,7 +73,6 @@ IRBuilder<>* CodeGen::getBuilder() {
 
 // ==== Declaration visitors ====
 void CodeGen::visitFunctionDeclaration(FunctionDeclNode* node) {
-    // Example: Create function signature
     Type* returnType = node->returnType->accept(*this);
 
     std::vector<Type*> paramTypes;
@@ -90,20 +89,17 @@ void CodeGen::visitFunctionDeclaration(FunctionDeclNode* node) {
     for (auto& arg : function->args()) {
         arg.setName(node->parameters[idx++]->identifier);
     }
-    return function;
+    //return function;
 }
 
 void CodeGen::visitFunctionDefinition(FunctionDeclNode* node) {
     Function* function = m_module->getFunction(node->identifier);
-    if (!function)
-        function = visitFunctionDeclaration(node);
-
-    // If there's a body, generate it
-    //if (node->body && !node->body->body.empty()) {
-    if (node->body->body.empty()) {
-        //TODO warn empty function body?
+    if (!function) {
+        visitFunctionDeclaration(node);
+        function = m_module->getFunction(node->identifier);
     }
 
+    // gen function body
     BasicBlock* entry = BasicBlock::Create(*m_context, "entry", function);
     m_builder->SetInsertPoint(entry);
 
@@ -204,24 +200,177 @@ void CodeGen::visitBlockStatement(BlockStatementNode* node) {
     }
 }
 
+Value* CodeGen::convertToBoolean(Value* condValue) {
+    if (condValue->getType()->isIntegerTy()) {
+        // Integer: compare with 0
+        return m_builder->CreateICmpNE(
+            condValue, ConstantInt::get(condValue->getType(), 0), "ifcond"
+        );
+    } else if (condValue->getType()->isFloatingPointTy()) {
+        // Float: compare with 0.0
+        return m_builder->CreateFCmpONE(
+            condValue, ConstantFP::get(condValue->getType(), 0.0), "ifcond"
+        );
+    } else if (condValue->getType()->isPointerTy()) {
+        // Pointer: compare with null
+        return m_builder->CreateICmpNE(
+            condValue, ConstantPointerNull::get(cast<PointerType>(condValue->getType())), "ifcond"
+        );
+    } else {
+        // Already a boolean (i1)
+        return condValue;
+    }
+    return nullptr;
+}
+
 void CodeGen::visitIfStatement(IfStatementNode* node) {
-    // TODO: Implement if statement
-    std::cout << "Generating if statement\n";
+    Value* condValue = getValueOf(node->condition);
+    assert(condValue != nullptr && "Condition is nullptr");
+    // Convert condition to boolean (i1)
+    Value* condition = convertToBoolean(condValue);
+    assert(condition != nullptr && "Condition is nullptr");
+
+    Function* func = m_builder->GetInsertBlock()->getParent();
+
+    // Create basic blocks
+    BasicBlock* thenBB = BasicBlock::Create(*m_context, "if.then", func);
+    BasicBlock* mergeBB = BasicBlock::Create(*m_context, "if.end");
+    BasicBlock* elseBB = node->elseBody ? BasicBlock::Create(*m_context, "if.else") : mergeBB;
+
+    // Branch based on condition
+    m_builder->CreateCondBr(condition, thenBB, elseBB);
+
+    // Emit then block
+    m_builder->SetInsertPoint(thenBB);
+    node->thenBody->accept(*this);
+    if (!m_builder->GetInsertBlock()->getTerminator()) {
+        m_builder->CreateBr(mergeBB);
+    }
+
+    // Emit else block if it exists
+    if (node->elseBody) {
+        func->insert(func->end(), elseBB);
+        m_builder->SetInsertPoint(elseBB);
+        node->elseBody->accept(*this);
+        if (!m_builder->GetInsertBlock()->getTerminator()) {
+            m_builder->CreateBr(mergeBB);
+        }
+    }
+
+    // Emit merge block
+    func->insert(func->end(), mergeBB);
+    m_builder->SetInsertPoint(mergeBB);
 }
 
 void CodeGen::visitWhileStatement(WhileStatementNode* node) {
-    // TODO: Implement while loop
-    std::cout << "Generating while statement\n";
+    Function* func = m_builder->GetInsertBlock()->getParent();
+
+    BasicBlock* condBB = BasicBlock::Create(*m_context, "while.cond", func);
+    BasicBlock* bodyBB = BasicBlock::Create(*m_context, "while.body");
+    BasicBlock* endBB = BasicBlock::Create(*m_context, "while.end");
+
+    m_builder->CreateBr(condBB);
+    m_builder->SetInsertPoint(condBB);
+    if (node->condition) {
+        Value* condValue = getValueOf(node->condition);
+        assert(condValue != nullptr && "Condition is nullptr");
+        Value* condition = convertToBoolean(condValue);
+        assert(condition != nullptr && "Condition is nullptr");
+        m_builder->CreateCondBr(condition, bodyBB, endBB);
+    } else {
+        m_builder->CreateBr(bodyBB);
+    }
+
+    func->insert(func->end(), bodyBB);
+    m_builder->SetInsertPoint(bodyBB);
+    node->loopBody->accept(*this);
+    if (!m_builder->GetInsertBlock()->getTerminator()) {
+        m_builder->CreateBr(condBB);
+    }
+
+    func->insert(func->end(), endBB);
+    m_builder->SetInsertPoint(endBB);
 }
 
 void CodeGen::visitDoWhileStatement(DoWhileStatementNode* node) {
-    // TODO: Implement do-while loop
-    std::cout << "Generating do-while statement\n";
+    Function* func = m_builder->GetInsertBlock()->getParent();
+
+    BasicBlock* bodyBB = BasicBlock::Create(*m_context, "do.while.body");
+    BasicBlock* condBB = BasicBlock::Create(*m_context, "do.while.cond");
+    BasicBlock* endBB = BasicBlock::Create(*m_context, "do.while.end");
+
+    m_builder->CreateBr(bodyBB);
+    func->insert(func->end(), bodyBB);
+    m_builder->SetInsertPoint(bodyBB);
+    node->loopBody->accept(*this);
+    if (!m_builder->GetInsertBlock()->getTerminator()) {
+        m_builder->CreateBr(condBB);
+    }
+
+    func->insert(func->end(), condBB);
+    m_builder->SetInsertPoint(condBB);
+    if (node->condition) {
+        Value* condValue = getValueOf(node->condition);
+        assert(condValue != nullptr && "Condition is nullptr");
+        Value* condition = convertToBoolean(condValue);
+        assert(condition != nullptr && "Condition is nullptr");
+        m_builder->CreateCondBr(condition, bodyBB, endBB);
+    } else {
+        m_builder->CreateBr(bodyBB);
+    }
+
+    func->insert(func->end(), endBB);
+    m_builder->SetInsertPoint(endBB);
 }
 
 void CodeGen::visitForStatement(ForStatementNode* node) {
-    // TODO: Implement for loop
-    std::cout << "Generating for statement\n";
+    Function* func = m_builder->GetInsertBlock()->getParent();
+
+    // initialize loop variable
+    BasicBlock* preheaderBB = BasicBlock::Create(*m_context, "for.init", func);
+    m_builder->CreateBr(preheaderBB);
+    m_builder->SetInsertPoint(preheaderBB);
+
+    if (std::holds_alternative<ExpressionNode*>(node->init)) {
+        std::get<ExpressionNode*>(node->init)->accept(*this);
+    } else {
+        std::get<DeclarationNode*>(node->init)->accept(*this);
+    }
+
+
+    BasicBlock* condBB = BasicBlock::Create(*m_context, "for.cond", func);
+    BasicBlock* bodyBB = BasicBlock::Create(*m_context, "for.body");
+    BasicBlock* incBB = BasicBlock::Create(*m_context, "for.increment");
+    BasicBlock* endBB = BasicBlock::Create(*m_context, "for.end");
+
+    m_builder->CreateBr(condBB);
+    m_builder->SetInsertPoint(condBB);
+    if (node->condition) {
+        Value* condValue = getValueOf(node->condition);
+        assert(condValue != nullptr && "Condition is nullptr");
+        Value* condition = convertToBoolean(condValue);
+        assert(condition != nullptr && "Condition is nullptr");
+        m_builder->CreateCondBr(condition, bodyBB, endBB);
+    } else {
+        m_builder->CreateBr(bodyBB);
+    }
+
+    func->insert(func->end(), bodyBB);
+    m_builder->SetInsertPoint(bodyBB);
+    node->body->accept(*this);
+    if (!m_builder->GetInsertBlock()->getTerminator()) {
+        m_builder->CreateBr(incBB);
+    }
+
+    func->insert(func->end(), incBB);
+    m_builder->SetInsertPoint(incBB);
+    if (node->update) {
+        node->update->accept(*this);
+    }
+    m_builder->CreateBr(condBB);
+
+    func->insert(func->end(), endBB);
+    m_builder->SetInsertPoint(endBB);
 }
 
 void CodeGen::visitReturnStatement(ReturnStatementNode* node) {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <llvm/IR/Instructions.h>
 #include <llvm/IR/Value.h>
 #include <memory>
 #include <string>
@@ -13,7 +14,7 @@ struct Context {
         Scope = 3,
     };
 
-    Context* parent = nullptr;
+    std::unique_ptr<Context> parent = nullptr;
     Type type;
     std::unordered_map<std::string, llvm::AllocaInst*> namedValues;
 
@@ -23,7 +24,7 @@ struct Context {
 
     std::unique_ptr<Context> destroy() { return std::move(parent); }
 
-    llvm::AllocaInst* get(const std::string& name) {
+    llvm::Value* get(const std::string& name) {
         if (namedValues.count(name)) {
             return namedValues[name];
         }
@@ -32,4 +33,11 @@ struct Context {
         }
         return nullptr;
     }
+
+    void set(const std::string& name, llvm::Value* value) { namedValues[name] = value; }
+  private:
+    Context(std::unique_ptr<Context> parent, Type type = Function)
+        : parent(std::move(parent)),
+          type(type) {}
+    std::unordered_map<std::string, llvm::Value*> namedValues;
 };

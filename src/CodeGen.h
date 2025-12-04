@@ -28,7 +28,7 @@ class CodeGen {
     // Symbol table for namedTypes
     struct StructInfo {
         llvm::Type* type;
-        std::unordered_map < std::string, std::pair<unsigned, llvm::Type*> fields;
+        std::unordered_map < std::string, std::pair<unsigned, llvm::Type*>> fields;
     };
     std::unordered_map<std::string, StructInfo> m_structInfos;
     std::unordered_map<std::string, llvm::Type*> m_namedTypes;
@@ -69,6 +69,7 @@ class CodeGen {
     // Helpers for getting addresses and values
     llvm::Value* getAddressOf(ExpressionNode* node);  // Get pointer (for l-values)
     llvm::Value* getValueOf(ExpressionNode* node);    // Get loaded value (for r-values)
+    llvm::Value* convertToBoolean(llvm::Value* condValue);
 
     llvm::Value* visitIntegerLiteral(IntegerLiteralNode* node);
     llvm::Value* visitDoubleLiteral(DoubleLiteralNode* node);
